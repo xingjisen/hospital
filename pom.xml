@@ -21,18 +21,19 @@
     </parent>
     <properties>
         <java.version>17</java.version>
-        <cloud.version>Greenwich.RELEASE</cloud.version>
+        <cloud.version>3.2.5</cloud.version>
+        <openfeign.version>3.1.9</openfeign.version>
         <alibaba.version>2.2.6.RELEASE</alibaba.version>
-        <mybatis-plus.version>3.5.3</mybatis-plus.version>
-        <mysql.version>8.0.32</mysql.version>
+        <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
+        <mysql.version>8.0.31</mysql.version>
         <swagger.version>3.0.0</swagger.version>
-        <jwt.version>0.11.5</jwt.version>
+        <jwt.version>0.12.6</jwt.version>
         <fastjson2.version>2.0.34</fastjson2.version>
         <httpclient.version>4.5.13</httpclient.version>
         <easyexcel.version>3.1.1</easyexcel.version>
-        <aliyun.version>4.7.0</aliyun.version>
-        <oss.version>3.14.0</oss.version>
-        <jodatime.version>2.11.2</jodatime.version>
+        <aliyun.version>4.6.4</aliyun.version>
+        <oss.version>3.9.1</oss.version>
+        <jodatime.version>2.11.1</jodatime.version>
 
         <!--        <spring-boot.version>3.0.2</spring-boot.version>-->
     </properties>
@@ -51,6 +52,13 @@
                 <scope>import</scope>
             </dependency>
             <!--Spring Cloud微服务版本-->
+            <!--  服务调用feign  -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-openfeign</artifactId>
+                <version>${openfeign.version}</version>
+            </dependency>
+            <!--  服务调用feign  -->
             <!--阿里巴巴微服务套件-->
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
@@ -104,7 +112,7 @@
             <dependency>
                 <groupId>com.alibaba.fastjson2</groupId>
                 <artifactId>fastjson2</artifactId>
-                <version>${fastjson.version}</version>
+                <version>${fastjson2.version}</version>
             </dependency>
             <!--JSON处理库-->
             <!-- Excel处理工具库-->
@@ -117,7 +125,7 @@
             <!-- 阿里云服务核心SDK-->
             <dependency>
                 <groupId>com.aliyun</groupId>
-                <artifactId>aluyun-java-sdk-core</artifactId>
+                <artifactId>aliyun-java-sdk-core</artifactId>
                 <version>${aliyun.version}</version>
             </dependency>
             <!-- 阿里云服务核心SDK-->
@@ -128,16 +136,16 @@
                 <version>${oss.version}</version>
             </dependency>
             <!--阿里云对象存储服务（OSS）SDK-->
-            <!--的日期时间API 可用java.time代替-->
+            <!--日期时间API 可用java.time代替-->
             <dependency>
                 <groupId>joda-time</groupId>
                 <artifactId>joda-time</artifactId>
                 <version>${jodatime.version}</version>
             </dependency>
-            <!--的日期时间API 可用java.time代替-->
+            <!--日期时间API 可用java.time代替-->
         </dependencies>
     </dependencyManagement>
-    <dependencies>
+    <!--<dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -149,7 +157,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!--https://mvnrepository.com/artifact/cn.hutool/hutool-all-->
+        &lt;!&ndash;https://mvnrepository.com/artifact/cn.hutool/hutool-all&ndash;&gt;
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
@@ -177,9 +185,9 @@
         <dependency>
             <groupId>com.alibaba.fastjson2</groupId>
             <artifactId>fastjson2</artifactId>
-            <version>2.0.52</version>
+            <version>${fastjson2.version}</version>
         </dependency>
-    </dependencies>
+    </dependencies>-->
 
     <!--
         <build>
