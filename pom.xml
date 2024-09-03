@@ -24,9 +24,9 @@
         <cloud.version>3.2.5</cloud.version>
         <openfeign.version>3.1.9</openfeign.version>
         <alibaba.version>2.2.6.RELEASE</alibaba.version>
-        <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
+        <mybatis-plus.version>3.5.5</mybatis-plus.version>
         <mysql.version>8.0.31</mysql.version>
-        <swagger.version>3.0.0</swagger.version>
+        <swagger.version>4.1.0</swagger.version>
         <jwt.version>0.12.6</jwt.version>
         <fastjson2.version>2.0.34</fastjson2.version>
         <httpclient.version>4.5.13</httpclient.version>
@@ -40,7 +40,8 @@
         <oss.version>3.17.4</oss.version>
 
         <hutool-all.version>5.8.25</hutool-all.version>
-
+        <guava.version>33.2.1-jre</guava.version>
+        <mybatis-spring.version>3.0.3</mybatis-spring.version>
         <!--        <spring-boot.version>3.0.2</spring-boot.version>-->
     </properties>
     <!--工程类型:父工程-->
@@ -88,19 +89,26 @@
                 <version>${mysql.version}</version>
             </dependency>
             <!--mysql数据库驱动-->
-            <!--swagger 文档生成工具-->
+            <!--swagger3-->
             <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger2</artifactId>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
                 <version>${swagger.version}</version>
             </dependency>
+            <!--swagger3-->
+            <!--swagger 文档生成工具-->
+            <!--            <dependency>-->
+            <!--                <groupId>io.springfox</groupId>-->
+            <!--                <artifactId>springfox-swagger2</artifactId>-->
+            <!--                <version>${swagger.version}</version>-->
+            <!--            </dependency>-->
             <!--swagger 文档生成工具-->
             <!--swagger ui 文档生成工具界面-->
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger-ui</artifactId>
-                <version>${swagger.version}</version>
-            </dependency>
+            <!--            <dependency>-->
+            <!--                <groupId>io.springfox</groupId>-->
+            <!--                <artifactId>springfox-swagger-ui</artifactId>-->
+            <!--                <version>${swagger.version}</version>-->
+            <!--            </dependency>-->
             <!--swagger ui 文档生成工具界面-->
             <!--JSON Web Token库-->
             <dependency>
@@ -189,6 +197,19 @@
                 <version>${hutool-all.version}</version>
             </dependency>
             <!--Hutool工具箱-->
+
+
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis-spring</artifactId>
+                <version>${mybatis-spring.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <!--<dependencies>
