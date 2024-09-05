@@ -55,12 +55,19 @@ feign:
   # 指定别名包扫描路径，xml文件可以直接使用全类名
   #  type-aliases-package: com.your.domain
 
-#  configuration:
-#    # 数据库驼峰方式映射
-#    map-underscore-to-camel-case: true
-#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-#  global-config:
-#    # 全局配置
-#    db-config:
-#      # 数据库配置
-#      id-type: auto
+  #  configuration:
+  #    # 数据库驼峰方式映射
+  #    map-underscore-to-camel-case: true
+  #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  #  global-config:
+  #    # 全局配置
+  #    db-config:
+  #      # 数据库配置
+  #      id-type: auto
+  # 日志配置
+  #logging:
+  #  # 日志打印地址
+  #  file:
+  #    path: D:/logs
+  # xml自定义日志路径
+#  log-path: D:/log
