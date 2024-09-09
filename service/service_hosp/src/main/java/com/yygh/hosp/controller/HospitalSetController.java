@@ -40,7 +40,7 @@ public class HospitalSetController {
     public Result del(@PathVariable Long id) {
         boolean flag = hospitalSetService.removeById(id);
         if (flag) {
-            Result.success();
+            return Result.success();
         }
         return Result.fail();
     }
@@ -48,7 +48,7 @@ public class HospitalSetController {
     @Operation(summary = "分页逻辑查询医院设置")
     @PostMapping("/findPage")
     public Result findPage(@RequestBody HospitalSetQueryVo hospitalSetQueryVo) {
-        Page<HospitalSet> page = new Page<>(hospitalSetQueryVo.getPageSize(), hospitalSetQueryVo.getPageNum());
+        Page<HospitalSet> page = new Page<>(hospitalSetQueryVo.getPageNum(), hospitalSetQueryVo.getPageSize());
         // 搜索条件
         QueryWrapper<HospitalSet> wrapper = new QueryWrapper<>();
         String hosname = hospitalSetQueryVo.getHosname();
