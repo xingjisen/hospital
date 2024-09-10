@@ -24,3 +24,7 @@ export const putHosp = (data) => {
 export const addHosp = (data) => {
     return request.post({url: '/admin/hosp/hospitalSet/add', data})
 }
+/** 详情 */
+export const detailHosp = (id) => {
+    return request.get({url: `/admin/hosp/hospitalSet/${id}`})
+}
