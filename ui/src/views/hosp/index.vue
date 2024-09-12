@@ -135,6 +135,7 @@ onMounted(() => {
 const total = ref(20);
 const tableList = ref([]);
 const getList = async () => {
+  loading.value = true
   const res = await getHospList(queryParam.value);
   tableList.value = res.data.records;
   loading.value = false
@@ -143,7 +144,6 @@ const getList = async () => {
 
 /** 状态启停 */
 function statusChange(row) {
-  loading.value = true
   lockHosp(row.id, row.status).then(() => {
     ElMessage.success('操作成功');
     getList()
@@ -168,7 +168,6 @@ const queryParam = ref({
 
 /** 搜索 */
 function handleQuery() {
-  loading.value = true
   queryParam.value.pageNum = 1;
   getList();
 }
@@ -181,7 +180,6 @@ function handleReset() {
     hosname: null,
     hoscode: null
   }
-  loading.value = true
   getList();
 }
 
@@ -283,7 +281,6 @@ function sizeChange(val) {
 
 /** 分页页码变化 */
 function currentChange(val) {
-  loading.value = true;
   queryParam.value.pageNum = val;
   getList();
 }
