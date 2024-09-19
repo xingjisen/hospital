@@ -104,6 +104,29 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         ]
     },
     {
+        path: '/dict',
+        component: Layout,
+        name: 'Dict',
+        meta: {
+            title: t('router.data.name'),
+            icon: 'vi-ant-design:dashboard-filled',
+            alwaysShow: true
+        },
+        children: [
+            {
+                path: 'list',
+                component: () => import('@/views/dict/index.vue'),
+                name: 'DictList',
+                meta: {
+                    title: t('router.data.dict'),
+                    icon: 'vi-ant-design:trademark-outlined',
+                    noCache: true,
+                    affix: false
+                }
+            },
+        ]
+    },
+    {
         path: '/dashboard',
         component: Layout,
         redirect: '/dashboard/analysis',

@@ -195,6 +195,11 @@ export default {
         hosp: {
             name: 'hosp setup manage',
             list: 'hosp setup list'
+        },
+
+        data:{
+            name:'data manage',
+            dict:'dict manage'
         }
     },
     permission: {

@@ -19,8 +19,7 @@ import UnoCSS from 'unocss/vite'
 import {visualizer} from 'rollup-plugin-visualizer'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
-import {defineConfig} from "unocss";
+import {ElementPlusResolver} from 'unplugin-vue-components/resolvers'
 // https://vitejs.dev/config/
 const root = process.cwd()
 
@@ -83,16 +82,16 @@ export default ({command, mode}: ConfigEnv): UserConfig => {
             }),
             PurgeIcons(),
             env.VITE_USE_MOCK === 'true' ? viteMockServe({
-                    ignore: /^\_/,
-                    mockPath: 'mock',
-                    localEnabled: !isBuild,
-                    prodEnabled: isBuild,
-                    injectCode: `
+                ignore: /^\_/,
+                mockPath: 'mock',
+                localEnabled: !isBuild,
+                prodEnabled: isBuild,
+                injectCode: `
           import { setupProdMockServer } from '../mock/_createProductionServer'
 
           setupProdMockServer()
           `
-                }) : undefined,
+            }) : undefined,
             ViteEjsPlugin({
                 title: env.VITE_APP_TITLE
             }),
@@ -173,7 +172,7 @@ export default ({command, mode}: ConfigEnv): UserConfig => {
             proxy: {
                 // 选项写法
                 '/api': {
-                    target: 'http://127.0.0.1:8080',
+                    target: 'http://127.0.0.1:9000',
                     changeOrigin: true,
                     ws: true,
                     rewrite: (path) => path.replace(/^\/api/, '')

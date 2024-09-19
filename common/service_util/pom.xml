@@ -10,6 +10,31 @@
     </parent>
 
     <artifactId>service_util</artifactId>
+    <dependencies>
+        <!--数据缓存：springCache+redis实现-->
+        <!--springCache标签
+            value：缓存名，必须；cacheNames：与value差不多，二选一；keyGenerator：key生成规则
+
+            @Cacheable 第一次查询查询数据库，将数据放到缓存，第二次直接查询缓存, 一般用在查询
+            @CachePut 每次都会执行，将结果存入指定的缓存中，一般用在新增、修改操作
+            @CacheEvict 清空缓存，一般用在更新或者删除上
+        -->
+        <!--redis-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <!--redis-->
+        <!--集成redis所需连接池-->
+        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.apache.commons/commons-pool2 &ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.apache.commons</groupId>-->
+        <!--            <artifactId>commons-pool2</artifactId>-->
+        <!--            <version>2.11.1</version>-->
+        <!--        </dependency>-->
+        <!--集成redis所需连接池-->
+
+    </dependencies>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>

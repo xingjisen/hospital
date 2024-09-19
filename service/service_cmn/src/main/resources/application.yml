@@ -15,6 +15,27 @@ spring:
     url: jdbc:mysql://101.43.167.87:23306/yygh_cmn?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
     username: root
     password: 123456
+  # Redis配置
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      database: 0
+      # 读超时
+      timeout: 3000
+      # 连接超时
+      connectTimeout: 5000
+      # Lettuce连接池
+      lettuce:
+        pool:
+          # 最小空闲连接
+          min-idle: 5
+          # 最大空闲连接
+          max-idle: 10
+          # 最大连接数
+          max-active: 100
+          # 连接分配应该阻塞的最大时间
+          max-wait: 2000
   # 配置返回json的全局时间格式
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
@@ -47,27 +68,27 @@ feign:
     enabled: true
 
   ## 配置mybatis-plus
-  #mybatis-plus:
+mybatis-plus:
   #  # 配置文件映射
   #  config-location: classpath*:**/mapper/*.xml
   # xml映射文件地址
-  #  mapper-locations: classpath:/mapper/**.xml
+  mapper-locations: classpath*:**/xml/*.xml
   # 指定别名包扫描路径，xml文件可以直接使用全类名
   #  type-aliases-package: com.your.domain
 
-  #  configuration:
-  #    # 数据库驼峰方式映射
-  #    map-underscore-to-camel-case: true
-  #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-  #  global-config:
-  #    # 全局配置
-  #    db-config:
-  #      # 数据库配置
-  #      id-type: auto
-  # 日志配置
-  #logging:
-  #  # 日志打印地址
-  #  file:
-  #    path: D:/logs
-  # xml自定义日志路径
+#  configuration:
+#    # 数据库驼峰方式映射 就无需再写resultMap映射了
+#    map-underscore-to-camel-case: true
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#  global-config:
+#    # 全局配置
+#    db-config:
+#      # 数据库配置
+#      id-type: auto
+# 日志配置
+#logging:
+#  # 日志打印地址
+#  file:
+#    path: D:/logs
+# xml自定义日志路径
 #  log-path: D:/log
