@@ -10,4 +10,5 @@ import com.yygh.model.hosp.HospitalSet;
  * @date 2024-09-03 19:55
  */
 public interface HospitalSetService extends IService<HospitalSet> {
+    String getSignKey(String hoscode);
 }

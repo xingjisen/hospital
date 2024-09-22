@@ -41,6 +41,13 @@
         </dependency>
         <!--swagger3-->
 
+        <!--json转换器-->
+        <dependency>
+            <groupId>com.alibaba.fastjson2</groupId>
+            <artifactId>fastjson2</artifactId>
+        </dependency>
+        <!--json转换器-->
+
         <!--        &lt;!&ndash;swagger 文档生成工具&ndash;&gt;-->
         <!--        <dependency>-->
         <!--            <groupId>io.springfox</groupId>-->

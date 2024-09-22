@@ -14,6 +14,8 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @MapperScan("com.yygh.hosp.mapper")
 @ComponentScan("com.yygh")
+// 启动Nacos
+//@EnableDiscoveryClient
 public class ServiceHospApplication {
     public static void main(String[] args) {
         SpringApplication.run(ServiceHospApplication.class, args);

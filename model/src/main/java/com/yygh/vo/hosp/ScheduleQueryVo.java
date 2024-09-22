@@ -1,5 +1,6 @@
 package com.yygh.vo.hosp;
 
+import com.yygh.vo.common.Page;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
@@ -7,7 +8,7 @@ import java.util.Date;
 
 @Data
 @Schema(description = "Schedule")
-public class ScheduleQueryVo {
+public class ScheduleQueryVo extends Page {
 
     @Schema(description = "医院编号")
     private String hoscode;

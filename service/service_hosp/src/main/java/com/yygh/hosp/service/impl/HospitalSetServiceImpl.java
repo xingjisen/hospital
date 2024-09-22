@@ -14,4 +14,8 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class HospitalSetServiceImpl extends ServiceImpl<HospitalSetMapper, HospitalSet> implements HospitalSetService {
+    @Override
+    public String getSignKey(String hoscode) {
+        return baseMapper.getSignKey(hoscode);
+    }
 }

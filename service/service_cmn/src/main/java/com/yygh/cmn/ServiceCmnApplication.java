@@ -14,6 +14,8 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @MapperScan("com.yygh.cmn.mapper")
 @ComponentScan("com.yygh")
+//启动Nacos
+//@EnableDiscoveryClient
 public class ServiceCmnApplication {
     public static void main(String[] args) {
         SpringApplication.run(ServiceCmnApplication.class, args);

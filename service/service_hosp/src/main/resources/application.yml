@@ -19,21 +19,22 @@ spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
-#  cloud:
-#    # nacos服务地址
-#    nacos:
-#      discovery:
-#        server-addr: 127.0.0.1:8848
-#    # 设置sentinel地址
-#    sentinel:
-#      transport:
-#        dashboard: http://127.0.0.1:8858
-#  # mondogb配置
-#  data:
-#    mongodb:
-#      host: 127.0.0.1
-#      port: 27017
-#      database: yygh_hosp
+  cloud:
+    # nacos服务地址
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: 858556d4-ff55-44da-964e-fa7cd70fa16b
+  #      # 设置sentinel地址
+  #      sentinel:
+  #        transport:
+  #          dashboard: http://127.0.0.1:8858
+  # mondogb配置
+  data:
+    mongodb:
+      host: 127.0.0.1
+      port: 27017
+      database: yygh_hosp
 #
 #  # rabbitmq配置
 #  rabbitmq:

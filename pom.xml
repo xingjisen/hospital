@@ -23,7 +23,7 @@
         <java.version>17</java.version>
         <cloud.version>3.2.5</cloud.version>
         <openfeign.version>3.1.9</openfeign.version>
-        <alibaba.version>2.2.6.RELEASE</alibaba.version>
+        <alibaba.version>2023.0.0.0-RC1</alibaba.version>
         <mybatis-plus.version>3.5.5</mybatis-plus.version>
         <mysql.version>8.0.31</mysql.version>
         <swagger.version>4.1.0</swagger.version>

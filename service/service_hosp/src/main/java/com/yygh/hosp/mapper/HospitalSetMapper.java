@@ -10,4 +10,5 @@ import com.yygh.model.hosp.HospitalSet;
  * @date 2024-09-03 19:42
  */
 public interface HospitalSetMapper extends BaseMapper<HospitalSet> {
+    String getSignKey(String hoscode);
 }
