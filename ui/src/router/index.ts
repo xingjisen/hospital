@@ -91,11 +91,22 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         },
         children: [
             {
-                path: 'list',
-                component: () => import('@/views/hosp/index.vue'),
-                name: 'HospList',
+                path: 'hospitalSet',
+                component: () => import('@/views/yygh/hosp/hospitalSet/index.vue'),
+                name: 'hospitalSet',
                 meta: {
-                    title: t('router.hosp.list'),
+                    title: t('router.hosp.hispitalSetName'),
+                    icon: 'vi-ant-design:trademark-outlined',
+                    noCache: true,
+                    affix: false
+                }
+            },
+            {
+                path: 'hospital',
+                component: () => import('@/views/yygh/hosp/hospital/index.vue'),
+                name: 'hospital',
+                meta: {
+                    title: t('router.hosp.hispitalName'),
                     icon: 'vi-ant-design:trademark-outlined',
                     noCache: true,
                     affix: false
@@ -115,7 +126,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         children: [
             {
                 path: 'list',
-                component: () => import('@/views/dict/index.vue'),
+                component: () => import('@/views/yygh/dict/index.vue'),
                 name: 'DictList',
                 meta: {
                     title: t('router.data.dict'),

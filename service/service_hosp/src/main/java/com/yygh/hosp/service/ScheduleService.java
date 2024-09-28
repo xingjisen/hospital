@@ -4,6 +4,7 @@ import com.yygh.model.hosp.Schedule;
 import com.yygh.vo.hosp.ScheduleQueryVo;
 import org.springframework.data.domain.Page;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -18,4 +19,8 @@ public interface ScheduleService {
     Page<Schedule> list(ScheduleQueryVo scheduleQueryVo);
 
     void remove(Schedule schedule);
+
+    Map<String, Object> getScheduleRule(ScheduleQueryVo scheduleQueryVo);
+
+    List<Schedule> getDetailSchedule(ScheduleQueryVo scheduleQueryVo);
 }

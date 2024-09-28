@@ -16,6 +16,14 @@ import java.util.List;
  */
 public interface DictService extends IService<Dict> {
     /**
+     * 查询字典表列表
+     *
+     * @param dict
+     * @return
+     */
+    List<Dict> list(Dict dict);
+
+    /**
      * 查询父节点下数据
      *
      * @param id
@@ -42,4 +50,8 @@ public interface DictService extends IService<Dict> {
     Integer update(Dict dict);
 
     Dict detailDict(Long id);
+
+    String getDictName(String dictCode, String value);
+
+    List<Dict> findByDictCode(String dictCode);
 }

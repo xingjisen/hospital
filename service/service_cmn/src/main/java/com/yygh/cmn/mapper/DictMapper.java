@@ -22,4 +22,6 @@ public interface DictMapper extends BaseMapper<Dict> {
     Integer deleteByParentId(@Param("parentId") Long parentId);
 
     Long getEndId();
+
+    List<Dict> list(Dict dict);
 }

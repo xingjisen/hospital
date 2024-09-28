@@ -1,5 +1,7 @@
 package com.yygh.cmn.controller;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yygh.cmn.service.DictService;
 import com.yygh.common.result.Result;
 import com.yygh.model.cmn.Dict;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * @author Jason
@@ -21,11 +24,44 @@ import java.io.IOException;
  */
 @Tag(name = "字典管理")
 @RestController
-@CrossOrigin
+//@CrossOrigin
 @RequestMapping("/admin/cmn/dict")
 public class DictController {
     @Autowired
     DictService dictService;
+
+    @Operation(summary = "查询列表")
+    @GetMapping("/list")
+    public Result list(Dict dict) {
+        IPage<Dict> iPage = new Page<>(dict.getPageNum(), dict.getPageSize());
+        List<Dict> list = dictService.list(dict);
+//        dictService.page(iPage);
+        iPage.setRecords(list);
+        return Result.success(iPage);
+    }
+
+
+    @Operation(summary = "根据DictCode和value查询")
+    @GetMapping("/getName/{dictCode}/{value}")
+    public String getName(@PathVariable String dictCode, @PathVariable String value) {
+        String dictName = dictService.getDictName(dictCode, value);
+        return dictName;
+    }
+
+    @Operation(summary = "根据value查询")
+    @GetMapping("/getName/{value}")
+    public String getName(@PathVariable String value) {
+        String dictName = dictService.getDictName("", value);
+        return dictName;
+    }
+
+    @Operation(summary = "根据dictCode查询下级节点数据")
+    @GetMapping("/findByDictCode/{dictCode}")
+    public Result findByDictCode(@PathVariable("dictCode") String dictCode) {
+        List<Dict> dicts = dictService.findByDictCode(dictCode);
+        return Result.success(dicts);
+    }
+
 
     @Operation(summary = "查询父节点下数据")
     @GetMapping("/{id}")

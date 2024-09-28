@@ -194,12 +194,13 @@ export default {
 
         hosp: {
             name: 'hosp setup manage',
-            list: 'hosp setup list'
+            hispitalSetName: 'hosp setup list',
+            hispitalName: 'hosp list'
         },
 
-        data:{
-            name:'data manage',
-            dict:'dict manage'
+        data: {
+            name: 'data manage',
+            dict: 'dict manage'
         }
     },
     permission: {

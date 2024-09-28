@@ -3,6 +3,9 @@ package com.yygh.hosp.repository;
 import com.yygh.model.hosp.Schedule;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
+import java.util.Date;
+import java.util.List;
+
 /**
  * @author Jason
  * @PACKAGE_NAME com.yygh.hosp.repository
@@ -18,4 +21,6 @@ public interface ScheduleRepository extends MongoRepository<Schedule, String> {
      * @return
      */
     Schedule getScheduleByHoscodeAndHosScheduleId(String hoscode, String hosScheduleId);
+
+    List<Schedule> findScheduleByHoscodeAndDepcodeAndWorkDate(String hoscode, String depcode, Date workDate);
 }

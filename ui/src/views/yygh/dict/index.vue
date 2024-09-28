@@ -2,12 +2,13 @@
     <el-form>
         <el-form-item>
             <el-button type="primary" @click="handleAdd">新增</el-button>
-            <!--            <el-button type="danger">删除</el-button>-->
             <el-button type="warning" @click="handleExport">导出</el-button>
             <el-button type="success" @click="HandleUpload">导入</el-button>
             <el-button type="info" @click="HandleClearCache">清除缓存并刷新数据</el-button>
+            <el-button type="primary" @click="getList(1)">查询</el-button>
         </el-form-item>
     </el-form>
+
     <el-table
             :data="dictList"
             style="width: 100%"
@@ -15,7 +16,6 @@
             ref="dictListRef"
             border
             lazy
-            :current-change="aaaaa"
             v-loading="loading"
             :load="load"
             :tree-props="{ children: 'children', hasChildren: 'hasChildren' }">
@@ -83,7 +83,7 @@
 </template>
 
 <script setup lang="ts">
-import {addDict, clearCache, delDict, detailDict, getDictList, putDict} from "@/api/dict";
+import {addDict, clearCache, delDict, detailDict, getDictList, putDict} from "@/api/yygh/dict";
 import {onMounted, reactive, ref} from "vue";
 import {UploadFilled} from "@element-plus/icons-vue";
 import {download} from "@/utils/download";
@@ -213,9 +213,6 @@ function handleAdd(row) {
     console.log(dictListRef.value.store.states.treeData.value)
 }
 
-function aaaaa(row) {
-    console.log(row)
-}
 
 /** 修改 */
 function handleEdit(row) {
@@ -260,19 +257,22 @@ function confirm() {
             if (!form.value.id) {
                 addDict(form.value).then(() => {
                     ElMessage.success("新增成功")
+                    addVisible.value = false;
+                    reset();
+                    getList();
                 }).catch(err => {
                     ElMessage.error("新增失败", err)
                 })
             } else {
                 putDict(form.value).then(() => {
                     ElMessage.success("修改成功")
+                    addVisible.value = false;
+                    reset();
+                    getList();
                 }).catch(err => {
                     ElMessage.error("修改失败", err)
                 })
             }
-            addVisible.value = false;
-            reset();
-            getList();
         }
     });
 }

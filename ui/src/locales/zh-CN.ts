@@ -190,12 +190,13 @@ export default {
 
         hosp: {
             name: '医院设置管理',
-            list: '医院设置列表'
+            hispitalSetName: '医院设置列表',
+            hispitalName: '医院列表'
         },
 
-        data:{
-            name:'数据管理',
-            dict:'字典管理'
+        data: {
+            name: '数据管理',
+            dict: '字典管理'
         }
     },
     permission: {

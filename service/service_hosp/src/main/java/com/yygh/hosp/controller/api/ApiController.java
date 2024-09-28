@@ -15,6 +15,8 @@ import com.yygh.model.hosp.Hospital;
 import com.yygh.model.hosp.Schedule;
 import com.yygh.vo.hosp.DepartmentQueryVo;
 import com.yygh.vo.hosp.ScheduleQueryVo;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,6 +32,7 @@ import java.util.Map;
  * @date 2024-09-20 19:11
  */
 @RestController
+@Tag(name = "医院接口")
 @RequestMapping("/api/hosp")
 public class ApiController {
     @Autowired
@@ -45,6 +48,7 @@ public class ApiController {
     /**
      * 上传医院接口
      */
+    @Operation(summary = "上传医院接口")
     @PostMapping("/saveHospital")
     public Result saveHosp(HttpServletRequest request) {
         Map<String, String[]> requestMap = request.getParameterMap();
@@ -63,6 +67,7 @@ public class ApiController {
     /**
      * 查询医院接口
      */
+    @Operation(summary = "查询医院接口")
     @PostMapping("/hospital/show")
     public Result lockHosp(HttpServletRequest request) {
         Map<String, String[]> requestMap = request.getParameterMap();
@@ -78,6 +83,7 @@ public class ApiController {
     /**
      * 上传科室接口
      */
+    @Operation(summary = "上传科室接口")
     @PostMapping("/saveDepartment")
     public Result saveDepart(HttpServletRequest request) {
         Map<String, String[]> requestMap = request.getParameterMap();
@@ -92,6 +98,7 @@ public class ApiController {
     /**
      * 查询科室接口
      */
+    @Operation(summary = "查询科室接口")
     @PostMapping("/department/list")
     public Result lockDepart(HttpServletRequest request) {
         Map<String, String[]> requestMap = request.getParameterMap();
@@ -110,6 +117,7 @@ public class ApiController {
     /**
      * 删除科室接口
      */
+    @Operation(summary = "删除科室接口")
     @PostMapping("/department/remove")
     public Result delDepart(HttpServletRequest request) {
         Map<String, String[]> requestMap = request.getParameterMap();
@@ -127,6 +135,7 @@ public class ApiController {
     /**
      * 上传排班接口
      */
+    @Operation(summary = "上传排班接口")
     @PostMapping("/saveSchedule")
     public Result saveSchedule(HttpServletRequest request) {
         Map<String, String[]> requestMap = request.getParameterMap();
@@ -141,6 +150,7 @@ public class ApiController {
     /**
      * 查询排班接口
      */
+    @Operation(summary = "查询排班接口")
     @PostMapping("/schedule/list")
     public Result lockSchedule(HttpServletRequest request) {
         Map<String, String[]> requestMap = request.getParameterMap();
@@ -159,6 +169,7 @@ public class ApiController {
     /**
      * 删除排班接口
      */
+    @Operation(summary = "删除排班接口")
     @PostMapping("/schedule/remove")
     public Result delSchedule(HttpServletRequest request) {
         Map<String, String[]> requestMap = request.getParameterMap();
@@ -176,6 +187,7 @@ public class ApiController {
     /**
      * 判断签名是否一致
      */
+    @Operation(summary = "判断签名是否一致")
     public String isSign(Map<String, Object> paramMap) {
         // 判断签名是否一致
         String sign = (String) paramMap.get("sign");

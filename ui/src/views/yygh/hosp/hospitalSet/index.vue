@@ -44,12 +44,12 @@
                 <el-switch
                         v-model="scope.row.status"
                         inline-prompt
-                        active-text="锁定"
-                        inactive-text="开启"
+                        active-text="启用"
+                        inactive-text="锁定"
                         :active-value="1"
                         :inactive-value="0"
                         @change="statusChange(scope.row)"
-                        style="--el-switch-on-color: rgba(255,73,73,0.75); --el-switch-off-color: #559eff"
+                        style="--el-switch-on-color: #559eff; --el-switch-off-color: rgba(255,73,73,0.75)"
                 />
             </template>
         </el-table-column>
@@ -117,7 +117,7 @@
 </template>
 <script setup lang="ts">
 import {onMounted, reactive, ref} from 'vue'
-import {addHosp, delHospList, detailHosp, getHospList, lockHosp, putHosp} from "@/api/hosp";
+import {addHosp, delHospList, detailHosp, getHospList, lockHosp, putHosp} from "@/api/yygh/hosp/hospitalSet";
 import {Delete, Edit, Plus} from "@element-plus/icons-vue";
 import {ElMessage, ElMessageBox} from "element-plus";
 

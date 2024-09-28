@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.yygh.vo.common.Page;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
@@ -21,7 +22,7 @@ import java.util.Map;
 @Data
 @Schema(name = "数据字典")
 @TableName("dict")
-public class Dict {
+public class Dict extends Page {
 
     private static final long serialVersionUID = 1L;
 
@@ -65,5 +66,6 @@ public class Dict {
     @Schema(description = "是否包含子节点")
     @TableField(exist = false)
     private boolean hasChildren;
+
 
 }
