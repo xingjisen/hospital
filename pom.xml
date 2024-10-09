@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com</groupId>
     <artifactId>hospital</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>${revision}</version>
     <name>hospital</name>
     <description>hospital</description>
     <modules>
@@ -21,9 +21,14 @@
         <!--从存储库查找父节点-->
         <relativePath/>
     </parent>
+    <!--统一版本-->
     <properties>
+        <!-- 统一项目修订版本 -->
+        <revision>0.0.1</revision>
+
         <java.version>17</java.version>
-        <cloud.version>3.2.5</cloud.version>
+        <!--        <spring-cloud.version>2023.0.3</spring-cloud.version>-->
+        <spring-cloud.version>3.2.5</spring-cloud.version>
         <gateway.version>4.1.0</gateway.version>
         <openfeign.version>4.1.0</openfeign.version>
         <alibaba.version>2023.0.0.0-RC1</alibaba.version>
@@ -58,7 +63,7 @@
                 <!--Spring Cloud微服务版本-->
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-stream-dependencies</artifactId>
-                <version>${cloud.version}</version>
+                <version>${spring-cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -71,6 +76,7 @@
                 <version>${gateway.version}</version>
             </dependency>
             <!--gateway-->
+
             <!--  服务调用feign  -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
@@ -87,6 +93,19 @@
                 <scope>import</scope>
             </dependency>
             <!--阿里巴巴微服务套件-->
+            <!--Nacos 配置依赖-->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+                <version>${alibaba.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+                <version>${alibaba.version}</version>
+            </dependency>
+            <!--Nacos 配置依赖-->
+
             <!--mybatis-plus持久层-->
             <dependency>
                 <groupId>com.baomidou</groupId>
@@ -231,6 +250,24 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-bootstrap -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+            <version>3.0.3</version>
+        </dependency>
+
+    </dependencies>
     <!--<dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>

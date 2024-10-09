@@ -6,7 +6,7 @@
     <parent>
         <groupId>com</groupId>
         <artifactId>service</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>${revision}</version>
     </parent>
 
     <artifactId>service_cmn</artifactId>
@@ -24,7 +24,7 @@
         <dependency>
             <groupId>com</groupId>
             <artifactId>service_util</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${revision}</version>
         </dependency>
     </dependencies>
 

@@ -6,13 +6,12 @@
     <parent>
         <groupId>com</groupId>
         <artifactId>hospital</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>${revision}</version>
     </parent>
 
     <artifactId>service</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>service_user</module>
         <module>service_hosp</module>
         <module>service_cmn</module>
     </modules>
@@ -20,12 +19,12 @@
         <dependency>
             <groupId>com</groupId>
             <artifactId>model</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${revision}</version>
         </dependency>
         <dependency>
             <groupId>com</groupId>
             <artifactId>common_util</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${revision}</version>
         </dependency>
         <!--Hutool工具箱-->
         <!--https://mvnrepository.com/artifact/cn.hutool/hutool-all-->

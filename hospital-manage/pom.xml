@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com</groupId>
     <artifactId>hospital-manage</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>${revision}</version>
     <name>hospital-manage</name>
     <description>hospital-manage</description>
     <properties>
