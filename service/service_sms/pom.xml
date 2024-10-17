@@ -5,19 +5,16 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com</groupId>
-        <artifactId>common</artifactId>
-        <version>${revision}</version>
+        <artifactId>service</artifactId>
+        <version>0.0.1</version>
     </parent>
 
-    <artifactId>common_util</artifactId>
+    <artifactId>service_sms</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    <dependencies>
-
-    </dependencies>
 
 </project>

@@ -14,6 +14,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -88,6 +90,20 @@ public class HospitalServiceImpl implements HospitalService {
             return byHoscode.getHosname();
         }
         return null;
+    }
+
+    @Override
+    public List<Hospital> findByHosname(String hosname) {
+        return hospitalRepository.findHospitalByHosnameLike(hosname);
+    }
+
+    @Override
+    public Map<String, Object> item(String hoscode) {
+        Map<String, Object> result = new HashMap<>();
+        Hospital hospital = setHospitalHosType(getByHoscode(hoscode));
+        result.put("hospital", hospital);
+        result.put("bookingRule", hospital.getBookingRule());
+        return result;
     }
 
 
