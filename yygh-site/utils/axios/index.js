@@ -1,33 +1,48 @@
-import axios from '@nuxtjs/axios'
+// 在你的组件文件中引入 Axios
+import axios from "axios";
+import { Message } from "element-ui";
+import cookie from "js-cookie";
 
-const service = axios.create({
-  baseURL: 'http://localhost',
+const instance = axios.create({
+  // baseURL:'http://localhost:9999',
+  baseURL: process.env.BASE_API,
   timeout: 15000 // 请求超时时间
-})
+});
 
+
+// instance.defaults.baseURL = process.env.CLIENT ? `${process.env.HOST}:${process.env.PORT}/${process.env.BASE_API}` : process.env.BASE_API;
 // http请求拦截器
-service.interceptors.requestInterceptors.use(
-  config => {
-    return config
+instance.interceptors.request.use(config => {
+    // console.log("Request Config:", config);
+    if (cookie.get("token")) {
+      config.headers["token"] = cookie.get("token");
+    }
+    return config;
   },
   err => {
-    return Promise.reject(err)
+    return Promise.reject(err);
   }
-)
+);
 // http相应拦截器
-service.interceptors.response.use(
-  response => {
+instance.interceptors.response.use(response => {
+    // console.log("响应内容",response);
+    if (response.data.code !== 208) {
+      // 未登录
+      loginEvent.$emit("loginDialogEvent");
+      return;
+    }
     if (response.data.code !== 200) {
-      ElMessage({
+      console.error("错误", response);
+      Message({
         message: response.data.message,
-        type: 'error'
-      })
+        type: "error"
+      });
     } else {
-      return response.data
+      return response.data;
     }
   },
   err => {
-    Promise.reject(err)
+    return Promise.reject(err);
   }
-)
-return service
+);
+export default instance;

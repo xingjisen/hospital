@@ -11,6 +11,8 @@ import com.yygh.user.mapper.UserInfoMapper;
 import com.yygh.user.service.UserInfoService;
 import com.yygh.vo.user.LoginVo;
 import io.netty.util.internal.StringUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -24,6 +26,9 @@ import java.util.Map;
  */
 @Service
 public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> implements UserInfoService {
+    @Autowired
+    private RedisTemplate<String, String> redisTemplate;
+
     @Override
     public Map<String, Object> login(LoginVo loginVo) {
         String phone = loginVo.getPhone();
@@ -31,6 +36,11 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
 
         if (phone.isEmpty() || code.isEmpty()) {
             throw new YyghException(ResultCodeEnum.PARAM_ERROR);
+        }
+        // 判断验证码
+        String redisCode = redisTemplate.opsForValue().get(phone);
+        if (!code.equals(redisCode)) {
+            throw new YyghException(ResultCodeEnum.CODE_ERROR);
         }
 
         QueryWrapper<UserInfo> wrapper = new QueryWrapper<>();

@@ -9,7 +9,7 @@
         <version>${revision}</version>
     </parent>
 
-    <artifactId>server_user</artifactId>
+    <artifactId>service_user</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -18,23 +18,9 @@
     </properties>
     <dependencies>
         <dependency>
-            <groupId>cn.dev33</groupId>
-            <artifactId>sa-token-spring-boot3-starter</artifactId>
-        </dependency>
-        <!-- Sa-Token 整合 Redis （使用 jdk 默认序列化方式） -->
-        <dependency>
-            <groupId>cn.dev33</groupId>
-            <artifactId>sa-token-redis-jackson</artifactId>
-        </dependency>
-        <!-- 提供Redis连接池 -->
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-pool2</artifactId>
-        </dependency>
-        <!-- Sa-Token插件：权限缓存与业务缓存分离 -->
-        <dependency>
-            <groupId>cn.dev33</groupId>
-            <artifactId>sa-token-alone-redis</artifactId>
+            <groupId>com</groupId>
+            <artifactId>common_util</artifactId>
+            <version>0.0.1</version>
         </dependency>
     </dependencies>
 

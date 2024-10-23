@@ -21,7 +21,7 @@ import java.util.Map;
  */
 @Tag(name = "用户管理")
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/user")
 public class UserInfoController {
     @Autowired
     private UserInfoService userInfoService;

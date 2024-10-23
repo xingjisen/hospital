@@ -29,5 +29,11 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-loadbalancer</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com</groupId>
+            <artifactId>common_util</artifactId>
+            <version>0.0.1</version>
+        </dependency>
     </dependencies>
 </project>

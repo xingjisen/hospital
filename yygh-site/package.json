@@ -5,8 +5,8 @@
   "author": "yygh",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt build",
+    "dev": "nuxt --mode development",
+    "build": "nuxt build --mode production",
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint:prettier": "prettier --check .",
@@ -15,8 +15,12 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
+    "axios": "^0.21.4",
     "core-js": "^3.25.3",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.4.5",
     "element-ui": "^2.15.10",
+    "js-cookie": "^3.0.5",
     "nuxt": "^2.15.8",
     "vue": "^2.7.10",
     "vue-server-renderer": "^2.7.10",
