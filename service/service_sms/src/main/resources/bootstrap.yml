@@ -1,11 +1,11 @@
-# Tomcat
 server:
-  port: 9000
+  # 端口号
+  port: 8093
 
 spring:
   # 应用名称
   application:
-    name: service-gateway
+    name: service-sms
   # 环境设置: dev、test、prod
   profiles:
     active: dev
@@ -28,18 +28,3 @@ spring:
         namespace: 858556d4-ff55-44da-964e-fa7cd70fa16b
         # 分组
         group: yygh
-
-        # 共享配置
-        shared-configs:
-          - data-id: shareconfig1.yml
-            group: share
-            # 是否自动刷新
-            refresh: true
-          - data-id: shareconfig2.yml
-            group: share
-            # 是否自动刷新
-            refresh: true
-          - data-id: db-dev.yml
-            group: share
-            # 是否自动刷新
-            refresh: true

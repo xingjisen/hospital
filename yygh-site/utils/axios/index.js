@@ -15,8 +15,9 @@ const instance = axios.create({
 instance.interceptors.request.use(config => {
     // console.log("Request Config:", config);
     if (cookie.get("token")) {
-      config.headers["token"] = cookie.get("token");
+      config.headers["token"] = `Bearer ${cookie.get("token")}`;
     }
+    console.log("config", config);
     return config;
   },
   err => {
@@ -25,20 +26,21 @@ instance.interceptors.request.use(config => {
 );
 // http相应拦截器
 instance.interceptors.response.use(response => {
-    // console.log("响应内容",response);
-    if (response.data.code !== 208) {
+    console.log("响应内容", response);
+    if (response.data.code === 208) {
       // 未登录
       loginEvent.$emit("loginDialogEvent");
       return;
-    }
-    if (response.data.code !== 200) {
-      console.error("错误", response);
-      Message({
-        message: response.data.message,
-        type: "error"
-      });
     } else {
-      return response.data;
+      if (response.data.code !== 200) {
+        console.error("错误", response);
+        Message({
+          message: response.data.message,
+          type: "error"
+        });
+      } else {
+        return response.data;
+      }
     }
   },
   err => {
