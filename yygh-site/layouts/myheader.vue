@@ -356,7 +356,7 @@ export default {
           redirect_uri: response.data.redirect_uri, // 授权成功后回调的url
           state: response.data.state, // 可设置为简单的随机数加session用来校验
           style: "black", // 提供"black"、"white"可选。二维码的样式
-          href: "" // 外部css文件url，需要https
+          href: "data:text/css;base64,QGNoYXJzZXQgInV0Zi04IjsKLmltcG93ZXJCb3ggLnFyY29kZSB7CiAvKiB3aWR0aDogMzAwcHg7Ki8KICBtYXJnaW4tdG9wOiAxM3B4Cn0KCi5pbXBvd2VyQm94IC50aXRsZSB7CiAgZGlzcGxheTogYmxvY2sKfQoKLmltcG93ZXJCb3ggLmluZm8gewogIHdpZHRoOiAxNjBweAp9Cgouc3RhdHVzX2ljb24gewogIGRpc3BsYXk6IG5vbmUKfQoKLmltcG93ZXJCb3ggLnN0YXR1cyB7CiAgdGV4dC1hbGlnbjogY2VudGVyCn0KCi8qLndycF9jb2RlIHsqLwovKiAgYm9yZGVyOiAxcHggc29saWQgI2U1ZTVlNTsqLwovKiAgbWFyZ2luOiAwIGF1dG87Ki8KLyogIGJvcmRlci1yYWRpdXM6IDRweCovCi8qfSovCgoucGFuZWxDb250ZW50IC5pbmZvIHsKICBkaXNwbGF5OiBub25lCn0=" // 外部css文件url，需要https
         });
 
         // var wwLogin = new WwLogin({
