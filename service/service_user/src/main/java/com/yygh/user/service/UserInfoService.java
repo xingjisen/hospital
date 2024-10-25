@@ -1,5 +1,7 @@
 package com.yygh.user.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.yygh.model.user.UserInfo;
 import com.yygh.vo.user.LoginVo;
 
 import java.util.Map;
@@ -10,7 +12,7 @@ import java.util.Map;
  * @Description
  * @date 2024-10-16 20:47
  */
-public interface UserInfoService {
+public interface UserInfoService extends IService<UserInfo> {
 
     /**
      * 用户手机号登陆
@@ -19,4 +21,6 @@ public interface UserInfoService {
      * @return
      */
     Map<String, Object> login(LoginVo loginVo);
+
+    UserInfo selectWxInfoOpenId(String openid);
 }

@@ -54,6 +54,7 @@
         <guava.version>33.2.1-jre</guava.version>
         <mybatis-spring.version>3.0.3</mybatis-spring.version>
         <loadbalancer.version>4.0.5</loadbalancer.version>
+        <okhttp3.version>3.14.9</okhttp3.version>
         <!--        <spring-boot.version>3.0.2</spring-boot.version>-->
     </properties>
     <!--工程类型:父工程-->
@@ -275,6 +276,12 @@
                 <groupId>org.mybatis</groupId>
                 <artifactId>mybatis-spring</artifactId>
                 <version>${mybatis-spring.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp -->
+            <dependency>
+                <groupId>com.squareup.okhttp3</groupId>
+                <artifactId>okhttp</artifactId>
+                <version>${okhttp3.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

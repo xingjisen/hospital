@@ -33,7 +33,8 @@ public class SmsController {
         if (!(boolean) sendObj.get("isCode")) {
             return Result.fail(sendObj.get("msg"));
         }
-        return Result.success(sendObj.get("code"));
+        sendObj.remove("code");
+        return Result.success(sendObj);
     }
 
 }

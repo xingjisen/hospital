@@ -1,6 +1,6 @@
 server:
   # 端口号
-  port: 8092
+  port: 8160
 
 spring:
   # 应用名称
@@ -34,3 +34,4 @@ spring:
             group: share
             # 是否自动刷新
             refresh: true
+

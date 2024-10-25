@@ -44,6 +44,12 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-pool2</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com</groupId>
+            <artifactId>service_util</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+
         <!-- Sa-Token插件：权限缓存与业务缓存分离 -->
         <!--        <dependency>-->
         <!--            <groupId>cn.dev33</groupId>-->

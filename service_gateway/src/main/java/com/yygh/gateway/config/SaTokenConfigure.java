@@ -23,15 +23,13 @@ public class SaTokenConfigure {
     public SaReactorFilter getSaReactorFilter() {
         return new SaReactorFilter()
                 // 指定 [拦截路由] 拦截inner
-                .addInclude("/**")
+                .addInclude("/*/inner/**")
                 // 指定 [放行路由]
-//                .addExclude("/api/hosp/site/list")
+                .addExclude("/api/hosp/**", "/admin/cmn/dict/**")
                 // 指定[认证函数]: 每次请求执行
                 .setAuth(obj -> {
                     System.out.println("---------- 进入Sa-Token全局认证 -----------" + obj);
-                    // 获取当前登录的用户token
-                    String token = SaSameUtil.getToken();
-                    System.out.println("token: " + token);
+                    String token = SaHolder.getRequest().getHeader(SaSameUtil.SAME_TOKEN);
                     SaSameUtil.checkToken(token);
                 })
                 // 指定[异常处理函数]：每次[认证函数]发生异常时执行此函数

@@ -42,6 +42,7 @@ public class SmsServiceImpl implements SmsService {
             map.put("code", "code");
             map.put("isCode", false);
             map.put("msg", "手机号验证不通过!");
+            map.put("isValid", false);
             return map;
         }
         // redis获取验证码
@@ -50,6 +51,7 @@ public class SmsServiceImpl implements SmsService {
             map.put("code", code);
             map.put("isCode", true);
             map.put("msg", "");
+            map.put("isValid", true);
             return map;
         }
         //获取不到重新发送
@@ -62,10 +64,12 @@ public class SmsServiceImpl implements SmsService {
             map.put("code", newCode);
             map.put("isCode", true);
             map.put("msg", "");
+            map.put("isValid", false);
         } else {
             map.put("code", "");
             map.put("isCode", false);
             map.put("msg", resp.get("message"));
+            map.put("isValid", false);
         }
         return map;
     }

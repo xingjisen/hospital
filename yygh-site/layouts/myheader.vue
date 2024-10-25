@@ -115,6 +115,7 @@ import { login } from "@/api/user";
 import { sendCode } from "@/api/sms";
 import { getByHospname } from "@/api/hosp";
 import Vue from "vue";
+import { getWeixinLoginParam } from "@/api/weixin";
 
 
 const defaultDialogAtrr = {
@@ -162,11 +163,35 @@ export default {
       // this.$refs.loginDialog.click();
     });
     // 触发事件，显示登录层：loginEvent.$emit('loginDialogEvent')
+
+    //初始化微信js
+    const script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "https://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js";
+    // script.src = "https://wwcdn.weixin.qq.com/node/wework/wwopen/js/wwLogin-1.2.4.js";
+    document.body.appendChild(script);
+
+    //   微信登陆回调方法
+    let self = this;
+    window["loginCallback"] = (name, token, openid) => {
+      this.$message.success("请绑定手机号");
+      self.loginCallback(name, token, openid);
+    };
   },
   methods: {
+    loginCallback(name, token, openid) {
+      // 打开手机登录层，绑定手机号，改逻辑与手机登录一致
+      console.log("name, token, openid", name, token, openid);
+      if (!!openid) {
+        this.userInfo.openid = openid;
+        this.showLogin();
+      } else {
+        console.log("到这里来了");
+        this.setCookies(name, token);
+      }
+    },
     // 输入框输入建议
     querySearch(queryString, callback) {
-      this.clear();
       if (!!queryString) {
         getByHospname(queryString).then(resp => {
           console.log(resp);
@@ -253,7 +278,15 @@ export default {
       // 发送短信验证码
       this.timeDown();
       this.dialogAtrr.sending = false;
+      console.log("发送手机验证码");
       sendCode(this.userInfo.phone).then(response => {
+        console.log("response.data", response);
+        if (response.data.isValid) {
+          // 请勿重新发送，上次验证码还未过期
+          this.$message.warning("请勿重新发送，上次验证码还未过期");
+        } else {
+          this.$message.success("验证码发送成功");
+        }
         this.timeDown();
       }).catch(e => {
         this.$message.error("发送失败，重新发送");
@@ -313,6 +346,32 @@ export default {
 
     weixinLogin() {
       this.dialogAtrr.showLoginType = "weixin";
+      getWeixinLoginParam().then(response => {
+        console.log("response", response);
+        var obj = new WxLogin({
+          self_redirect: true,
+          id: "weixinLogin", // 需要显示的容器id
+          appid: response.data.appid, // 公众号appid wx*******
+          scope: response.data.scope, // 网页默认即可
+          redirect_uri: response.data.redirect_uri, // 授权成功后回调的url
+          state: response.data.state, // 可设置为简单的随机数加session用来校验
+          style: "black", // 提供"black"、"white"可选。二维码的样式
+          href: "" // 外部css文件url，需要https
+        });
+
+        // var wwLogin = new WwLogin({
+        //   "id": "weixinLogin",//登录页面显示二维码的容器id
+        //   "appid": "wwfd44afd2d7ea5ec2",//企业微信的CorpID，在企业微信管理端查看
+        //   "agentid": "1000011",//授权方的网页应用id，在具体的网页应用中查看
+        //   "redirect_uri": encodeURIComponent("http://www.baidu.com"),//重定向的地址，需要进行encode
+        //   "state": "",
+        //   "href": "",//自定义样式链接，只支持https协议的资源地址
+        //   "lang": "zh"
+        // });
+
+
+        console.log("obj", obj);
+      });
     },
 
     phoneLogin() {
