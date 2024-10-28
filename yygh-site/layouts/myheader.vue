@@ -173,9 +173,10 @@ export default {
 
     //   微信登陆回调方法
     let self = this;
+    // TODO 可能会出现跨域问题
     window["loginCallback"] = (name, token, openid) => {
-      this.$message.success("请绑定手机号");
       self.loginCallback(name, token, openid);
+      console.log("到这里来了111");
     };
   },
   methods: {
@@ -183,6 +184,7 @@ export default {
       // 打开手机登录层，绑定手机号，改逻辑与手机登录一致
       console.log("name, token, openid", name, token, openid);
       if (!!openid) {
+        this.$message.success("请绑定手机号");
         this.userInfo.openid = openid;
         this.showLogin();
       } else {

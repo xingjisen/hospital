@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yygh.common.exception.YyghException;
 import com.yygh.common.result.ResultCodeEnum;
+import com.yygh.common.utils.Separator;
 import com.yygh.model.user.UserInfo;
 import com.yygh.user.mapper.UserInfoMapper;
 import com.yygh.user.service.UserInfoService;
@@ -95,7 +96,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
         if (StringUtil.isNullOrEmpty(name)) {
             name = userInfo.getPhone();
         }
-        StpUtil.login(userInfo.getId());
+        StpUtil.login(userInfo.getId() + Separator.TOKEN_SEPARATOR + name);
         SaTokenInfo tokenInfo = StpUtil.getTokenInfo();
         map.put("name", name);
         map.put("token", tokenInfo.getTokenValue());

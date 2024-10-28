@@ -6,30 +6,30 @@
     <parent>
         <groupId>com</groupId>
         <artifactId>service</artifactId>
-        <version>${revision}</version>
+        <version>0.0.1</version>
     </parent>
 
-    <artifactId>service_user</artifactId>
+    <artifactId>service_oss</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
     <dependencies>
+        <!--腾讯云OSS依赖-->
         <dependency>
-            <groupId>com</groupId>
-            <artifactId>common_util</artifactId>
-            <version>0.0.1</version>
+            <groupId>com.qcloud</groupId>
+            <artifactId>cos_api</artifactId>
         </dependency>
-
-        <!-- Sa-Token 权限认证（Reactor响应式集成），在线文档：https://sa-token.cc -->
-        <!--        <dependency>-->
-        <!--            <groupId>cn.dev33</groupId>-->
-        <!--            <artifactId>sa-token-reactor-spring-boot3-starter</artifactId>-->
-        <!--            <version>1.39.0</version>-->
-        <!--        </dependency>-->
-
+        <!--腾讯云OSS依赖-->
+        <!--日期时间API 可用java.time代替-->
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+        </dependency>
+        <!--日期时间API 可用java.time代替-->
         <dependency>
             <groupId>com</groupId>
             <artifactId>service_util</artifactId>

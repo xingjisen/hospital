@@ -1,11 +1,11 @@
 server:
   # 端口号
-  port: 8160
+  port: 8094
 
 spring:
   # 应用名称
   application:
-    name: service-user
+    name: service-oss
   # 环境设置: dev、test、prod
   profiles:
     active: dev
@@ -38,4 +38,5 @@ spring:
             group: share
             # 是否自动刷新
             refresh: true
+
 

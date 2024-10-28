@@ -29,7 +29,6 @@ import java.util.*;
 public class ScheduleServiceImpl implements ScheduleService {
     @Autowired
     private ScheduleRepository scheduleRepository;
-
     @Autowired
     private MongoTemplate mongoTemplate;
     @Autowired

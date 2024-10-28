@@ -5,6 +5,7 @@ import cn.dev33.satoken.stp.StpUtil;
 import com.alibaba.fastjson2.JSONObject;
 import com.yygh.common.result.Result;
 import com.yygh.common.utils.OkHttp3Util;
+import com.yygh.common.utils.Separator;
 import com.yygh.model.user.UserInfo;
 import com.yygh.user.service.UserInfoService;
 import com.yygh.user.utils.ConstantPropertiesUtil;
@@ -115,7 +116,7 @@ public class WeiXinApiController {
             map.put("openid", "");
         }
 
-        StpUtil.login(userInfo.getId());
+        StpUtil.login(userInfo.getId() + Separator.TOKEN_SEPARATOR + name);
         SaTokenInfo tokenInfo = StpUtil.getTokenInfo();
         map.put("name", name);
         map.put("token", tokenInfo.getTokenValue());
