@@ -176,7 +176,6 @@ export default {
     // TODO 可能会出现跨域问题
     window["loginCallback"] = (name, token, openid) => {
       self.loginCallback(name, token, openid);
-      console.log("到这里来了111");
     };
   },
   methods: {

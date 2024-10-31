@@ -18,7 +18,7 @@ public class AuthContextUtil {
     }
 
     /**
-     * 获取用过户名称
+     * 获取用户名称
      */
     public static String getUserName() {
         String loginId = (String) StpUtil.getLoginId();

@@ -6,11 +6,14 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yygh.common.exception.YyghException;
 import com.yygh.common.result.ResultCodeEnum;
+import com.yygh.common.utils.AuthContextUtil;
 import com.yygh.common.utils.Separator;
+import com.yygh.enums.AuthStatusEnum;
 import com.yygh.model.user.UserInfo;
 import com.yygh.user.mapper.UserInfoMapper;
 import com.yygh.user.service.UserInfoService;
 import com.yygh.vo.user.LoginVo;
+import com.yygh.vo.user.UserAuthVo;
 import io.netty.util.internal.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -108,5 +111,25 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
         QueryWrapper<UserInfo> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("openid", openid);
         return baseMapper.selectOne(queryWrapper);
+    }
+
+    @Override
+    public void userAuth(UserAuthVo userAuthVo) {
+        Long userId = AuthContextUtil.getUserId();
+        UserInfo userInfo = baseMapper.selectById(userId);
+
+        userInfo.setName(userAuthVo.getName());
+        userInfo.setCertificatesType(userAuthVo.getCertificatesType());
+        userInfo.setCertificatesNo(userAuthVo.getCertificatesNo());
+        userInfo.setCertificatesUrl(userAuthVo.getCertificatesUrl());
+        userInfo.setAuthStatus(AuthStatusEnum.AUTH_RUN.getStatus());
+
+        baseMapper.updateById(userInfo);
+    }
+
+    @Override
+    public UserInfo getUserInfo() {
+        Long userId = AuthContextUtil.getUserId();
+        return baseMapper.selectById(userId);
     }
 }

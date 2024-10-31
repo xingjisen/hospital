@@ -106,6 +106,7 @@ import "~/assets/css/hospital_personal.css";
 import "~/assets/css/hospital.css";
 import { getDept, getHospDetail } from "@/api/hosp";
 import cookie from "js-cookie";
+import { getUserInfo } from "@/api/user";
 
 export default {
   data() {
@@ -132,6 +133,22 @@ export default {
         loginEvent.$emit("loginDialogEvent");
         return;
       }
+
+      getUserInfo().then(resp => {
+        let authStatus = resp.data.authStatus;
+        console.log("resp", resp);
+        if (authStatus === 1) {
+          this.$message.warning("实名认证审核中,请耐心等待");
+          return;
+        } else if (authStatus === 0) {
+          this.$message.warning("实名认证未认证");
+          window.location.href = "/user";
+          return;
+        } else if (authStatus === -1) {
+          this.$message.error("认证失败,请联系管理员");
+          return;
+        }
+      });
     },
     init() {
       this.hoscode = this.$route.params.hoscode;

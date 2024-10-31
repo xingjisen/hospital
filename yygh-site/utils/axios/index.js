@@ -15,7 +15,7 @@ const instance = axios.create({
 instance.interceptors.request.use(config => {
     // console.log("Request Config:", config);
     if (cookie.get("token")) {
-      config.headers["token"] = `Bearer ${cookie.get("token")}`;
+      config.headers["yyghToken"] = `Bearer ${cookie.get("token")}`;
     }
     console.log("config", config);
     return config;
