@@ -1,11 +1,12 @@
 package com.yygh.vo.user;
 
+import com.yygh.vo.common.Page;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 @Data
 @Schema(description = "会员搜索对象")
-public class UserInfoQueryVo {
+public class UserInfoQueryVo extends Page {
 
     @Schema(description = "关键字")
     private String keyword;

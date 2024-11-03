@@ -1,4 +1,4 @@
-package com.yygh.user.controller;
+package com.yygh.user.api;
 
 import com.yygh.common.result.Result;
 import com.yygh.model.user.UserInfo;
@@ -18,7 +18,7 @@ import java.util.Map;
  * @Description
  * @date 2024-10-16 20:41
  */
-@Tag(name = "用户管理")
+@Tag(name = "用户登录管理")
 @RestController
 @RequestMapping("/api/user")
 public class UserInfoController {

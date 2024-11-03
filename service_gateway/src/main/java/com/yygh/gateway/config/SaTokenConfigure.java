@@ -24,6 +24,7 @@ public class SaTokenConfigure {
         return new SaReactorFilter()
                 // 指定 [拦截路由] 拦截inner
                 .addInclude("/*/inner/**")
+//                .addInclude("/api/**/auth/**")
                 // 指定 [放行路由]
                 .addExclude("/api/hosp/**", "/admin/cmn/dict/**")
                 // 指定[认证函数]: 每次请求执行

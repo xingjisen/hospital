@@ -3,4 +3,43 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yygh.user.mapper.UserInfoMapper">
 
+    <sql id="userInfoSql">
+        select id                as id,
+               openid            as openid,
+               nick_name         as nickName,
+               phone             as phone,
+               name              as name,
+               certificates_type as certificatesType,
+               certificates_no   as certificatesNo,
+               certificates_url  as certificatesUrl,
+               auth_status       as authStatus,
+               status            as status,
+               create_time       as createTime,
+               update_time       as updateTime,
+               is_deleted        as isDeleted
+        from user_info
+    </sql>
+    <select id="list" resultType="com.yygh.model.user.UserInfo" parameterType="com.yygh.vo.user.UserInfoQueryVo">
+        <include refid="userInfoSql"/>
+        <where>
+            is_deleted = 0
+            <if test="userInfoQueryVo.keyword != null and userInfoQueryVo.keyword != ''">and (name like
+                concat('%',#{userInfoQueryVo.keyword},'%') or phone like
+                concat('%',#{userInfoQueryVo.keyword},'%'))
+            </if>
+            <if test="userInfoQueryVo.status != null and userInfoQueryVo.status != ''">and status =
+                #{userInfoQueryVo.status}
+            </if>
+            <if test="userInfoQueryVo.authStatus != null and userInfoQueryVo.authStatus != ''">and auth_status =
+                #{userInfoQueryVo.authStatus}
+            </if>
+            <if test="userInfoQueryVo.createTimeBegin != null and userInfoQueryVo.createTimeBegin != ''">and create_time
+                &gt;= #{userInfoQueryVo.createTimeBegin}
+            </if>
+            <if test="userInfoQueryVo.createTimeEnd != null and userInfoQueryVo.createTimeEnd != ''">and create_time
+                &lt;= #{userInfoQueryVo.createTimeEnd}
+            </if>
+        </where>
+
+    </select>
 </mapper>
