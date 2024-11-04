@@ -174,8 +174,8 @@ function handleDict(row) {
         "该操作会删除该节点以及子节点下全部数据，是否继续？",
         "删除数据",
         {
-            confirmButtonText: 'OK',
-            cancelButtonText: 'Cancel',
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
             type: 'warning',
         })
         .then(() => {

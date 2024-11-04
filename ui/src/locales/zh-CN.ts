@@ -197,6 +197,10 @@ export default {
         data: {
             name: '数据管理',
             dict: '字典管理'
+        },
+
+        userManagement: {
+            name: "用户管理"
         }
     },
     permission: {

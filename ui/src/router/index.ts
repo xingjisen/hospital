@@ -138,6 +138,29 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         ]
     },
     {
+        path: '/user',
+        component: Layout,
+        name: 'user',
+        meta: {
+            title: t('router.userManagement.name'),
+            icon: 'vi-ant-design:dashboard-filled',
+            alwaysShow: true
+        },
+        children: [
+            {
+                path: 'list',
+                component: () => import('@/views/yygh/user/index.vue'),
+                name: 'UserManage',
+                meta: {
+                    title: t('router.userManagement.name'),
+                    icon: 'vi-ant-design:trademark-outlined',
+                    noCache: true,
+                    affix: false
+                }
+            },
+        ]
+    },
+    {
         path: '/dashboard',
         component: Layout,
         redirect: '/dashboard/analysis',

@@ -201,6 +201,10 @@ export default {
         data: {
             name: 'data manage',
             dict: 'dict manage'
+        },
+
+        userManagement: {
+            name: "user management"
         }
     },
     permission: {
