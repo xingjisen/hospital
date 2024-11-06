@@ -3,7 +3,9 @@ package com.yygh.hosp.controller.api;
 import com.yygh.common.result.Result;
 import com.yygh.hosp.service.DepartService;
 import com.yygh.hosp.service.HospitalService;
+import com.yygh.hosp.service.ScheduleService;
 import com.yygh.vo.hosp.HospitalQueryVo;
+import com.yygh.vo.hosp.ScheduleQueryVo;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,9 @@ public class HospApiController {
     private HospitalService hospitalService;
     @Autowired
     private DepartService departService;
+    @Autowired
+    private ScheduleService scheduleService;
+
 
     @Operation(summary = "查询医院列表")
     @GetMapping("/list")
@@ -49,5 +54,17 @@ public class HospApiController {
     @GetMapping("/hospDetail/{hoscode}")
     public Result detail(@PathVariable("hoscode") String hoscode) {
         return Result.success(hospitalService.item(hoscode));
+    }
+
+    @Operation(summary = "获取可预约排班信息")
+    @GetMapping("/auth/getBookingScheduleRule")
+    public Result bookingScheduleRule(ScheduleQueryVo scheduleQueryVo) {
+        return Result.success(scheduleService.bookingScheduleRule(scheduleQueryVo));
+    }
+
+    @Operation(summary = "获取排班信息")
+    @GetMapping("/auth/findScheduleList")
+    public Result findScheduleList(ScheduleQueryVo scheduleQueryVo) {
+        return Result.success(scheduleService.getDetailSchedule(scheduleQueryVo));
     }
 }

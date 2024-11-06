@@ -111,4 +111,10 @@ public class DepartServiceimpl implements DepartService {
         }
         return null;
     }
+
+    @Override
+    public Department getDepartment(String hoscode, String depcode) {
+        return departRepository.getDepartmentByHoscodeAndDepcode(hoscode, depcode);
+
+    }
 }

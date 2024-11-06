@@ -1,6 +1,6 @@
 server:
   # 端口号
-  port: 8092
+  port: 8160
 
 spring:
   # 应用名称

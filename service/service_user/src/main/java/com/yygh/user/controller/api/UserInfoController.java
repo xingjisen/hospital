@@ -1,4 +1,4 @@
-package com.yygh.user.api;
+package com.yygh.user.controller.api;
 
 import com.yygh.common.result.Result;
 import com.yygh.model.user.UserInfo;

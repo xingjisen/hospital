@@ -149,6 +149,8 @@ export default {
           return;
         }
       });
+
+      window.location.href = "/hosp/schedule?hoscode=" + this.hoscode + "&depcode=" + depcode;
     },
     init() {
       this.hoscode = this.$route.params.hoscode;

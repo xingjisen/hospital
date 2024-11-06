@@ -25,8 +25,16 @@ export const getByHospname = (hospname) => {
 export const getDept = (hoscode) => {
   return request.get(`${api_name}/dept/${hoscode}`);
 };
-
 /** 医院预约挂号详情信息*/
 export const getHospDetail = (hoscode) => {
   return request.get(`${api_name}/hospDetail/${hoscode}`);
+};
+/** 获取可预约排班信息*/
+export const bookingScheduleRule = (query) => {
+  return request.get(`${api_name}/auth/getBookingScheduleRule?${qs.stringify(query)}`);
+};
+
+/** 获取排班信息*/
+export const findScheduleList = (query) => {
+  return request.get(`${api_name}/auth/findScheduleList?${qs.stringify(query)}`);
 };

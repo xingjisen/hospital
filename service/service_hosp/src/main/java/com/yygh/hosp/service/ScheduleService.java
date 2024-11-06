@@ -23,4 +23,6 @@ public interface ScheduleService {
     Map<String, Object> getScheduleRule(ScheduleQueryVo scheduleQueryVo);
 
     List<Schedule> getDetailSchedule(ScheduleQueryVo scheduleQueryVo);
+
+    Map<String, Object> bookingScheduleRule(ScheduleQueryVo scheduleQueryVo);
 }

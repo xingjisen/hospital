@@ -640,12 +640,17 @@
   height: 80px;
   color: #4990f1;
   cursor: pointer;
-  -webkit-transition: all .2 ease;
-  transition: all .2 ease;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none
+  user-select: none;
+}
+
+.calendar-item:hover {
+  /*margin-top: -10px;*/
+  transform: translateY(-10px);
 }
 
 .calendar-item.small {
@@ -692,8 +697,9 @@
 }
 
 .calendar-item.selected {
-  font-weight: 700
+  font-weight: 700;
 }
+
 
 .calendar-item.selected .date-wrapper {
   color: #fff;
@@ -728,7 +734,7 @@
 .calendar-list-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
-  display: flex
+  display: flex;
 }
 
 .calendar-list-wrapper .space {

@@ -1,4 +1,4 @@
-package com.yygh.user.api;
+package com.yygh.user.controller.api;
 
 import cn.dev33.satoken.stp.SaTokenInfo;
 import cn.dev33.satoken.stp.StpUtil;
