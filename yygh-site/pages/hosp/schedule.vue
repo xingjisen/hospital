@@ -325,7 +325,7 @@ export default {
       if (availableNumber == 0 || this.pageFirstStatus == -1) {
         this.$message.error("不能预约");
       } else {
-        window.location.href = "/hospital/booking?scheduleId=" + scheduleId;
+        window.location.href = "/hosp/booking?scheduleId=" + scheduleId;
       }
     }
   }

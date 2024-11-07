@@ -342,7 +342,7 @@ export default {
     },
 
     handleSelect(item) {
-      window.location.href = "/hospital/" + item.hoscode;
+      window.location.href = "/hosp/" + item.hoscode;
     },
 
     weixinLogin() {

@@ -234,6 +234,12 @@ public class ScheduleServiceImpl implements ScheduleService {
         return result;
     }
 
+    @Override
+    public Schedule getSheduleId(String scheduleId) {
+        Schedule schedule = scheduleRepository.findById(scheduleId).get();
+        return packageSchedule(schedule);
+    }
+
     /**
      * 获取可预约日期分页数据
      */
@@ -270,11 +276,12 @@ public class ScheduleServiceImpl implements ScheduleService {
         return iPage;
     }
 
-    private void packageSchedule(Schedule schedule) {
+    private Schedule packageSchedule(Schedule schedule) {
         // 设置医院名称
         schedule.getParam().put("hosname", hospitalService.getHosName(schedule.getHoscode()));
         schedule.getParam().put("depname", departService.getDepartName(schedule.getHoscode(), schedule.getDepcode()));
         schedule.getParam().put("dayOfWeek", getWeek(schedule.getWorkDate()));
+        return schedule;
     }
 
     private DateTime getDateTime(Date date, String timeString) {

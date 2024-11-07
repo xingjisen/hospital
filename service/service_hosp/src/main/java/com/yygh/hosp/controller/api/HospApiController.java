@@ -67,4 +67,10 @@ public class HospApiController {
     public Result findScheduleList(ScheduleQueryVo scheduleQueryVo) {
         return Result.success(scheduleService.getDetailSchedule(scheduleQueryVo));
     }
+
+    @Operation(summary = "根据排班ID获取排版数据")
+    @GetMapping("/getSchedule/{scheduleId}")
+    public Result getSchedule(@PathVariable("scheduleId") String scheduleId) {
+        return Result.success(scheduleService.getSheduleId(scheduleId));
+    }
 }

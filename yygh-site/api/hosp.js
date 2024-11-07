@@ -38,3 +38,8 @@ export const bookingScheduleRule = (query) => {
 export const findScheduleList = (query) => {
   return request.get(`${api_name}/auth/findScheduleList?${qs.stringify(query)}`);
 };
+
+/** 根据排班ID获取排版数据*/
+export const getSchedule = (id) => {
+  return request.get(`${api_name}/getSchedule/${id}`);
+};
