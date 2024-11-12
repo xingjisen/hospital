@@ -14,14 +14,14 @@ import com.yygh.model.hosp.Department;
 import com.yygh.model.hosp.Hospital;
 import com.yygh.model.hosp.Schedule;
 import com.yygh.vo.hosp.DepartmentQueryVo;
+import com.yygh.vo.hosp.ScheduleOrderVo;
 import com.yygh.vo.hosp.ScheduleQueryVo;
+import com.yygh.vo.order.SignInfoVo;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -202,5 +202,17 @@ public class ApiController {
             throw new YyghException(ResultCodeEnum.SIGN_ERROR);
         }
         return hoscode;
+    }
+
+    @Operation(summary = "根据排班ID获取预约下单数据")
+    @GetMapping("/inner/getSheduleOrderVo/{scheduleId}")
+    public ScheduleOrderVo getSheduleOrderVo(@PathVariable("scheduleId") String scheduleId) {
+        return scheduleService.getSheduleOrderVo(scheduleId);
+    }
+
+    @Operation(summary = "根据排医院编号获取签名信息")
+    @GetMapping("/inner/getSiggnInfoVo/{hoscode}")
+    public SignInfoVo getSiggnInfoVo(@PathVariable("hoscode") String hoscode) {
+        return hospitalSetService.getSiggnInfoVo(hoscode);
     }
 }

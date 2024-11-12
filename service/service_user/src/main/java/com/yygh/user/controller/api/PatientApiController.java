@@ -73,4 +73,11 @@ public class PatientApiController {
             return Result.fail();
         }
     }
+
+    @Operation(summary = "根据就诊人id获取就诊人信息")
+    @DeleteMapping("/inner/get/{id}")
+    public Result getParentId(@PathVariable Long id) {
+        Patient patient = patientService.getById(id);
+        return Result.success(patient);
+    }
 }

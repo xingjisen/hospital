@@ -5,8 +5,10 @@ import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
 import com.alibaba.fastjson2.JSONObject;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yygh.common.exception.YyghException;
 import com.yygh.common.result.ResultCodeEnum;
+import com.yygh.hosp.mapper.ScheduleMapper;
 import com.yygh.hosp.repository.ScheduleRepository;
 import com.yygh.hosp.service.DepartService;
 import com.yygh.hosp.service.HospitalService;
@@ -16,6 +18,7 @@ import com.yygh.model.hosp.Department;
 import com.yygh.model.hosp.Hospital;
 import com.yygh.model.hosp.Schedule;
 import com.yygh.vo.hosp.BookingScheduleRuleVo;
+import com.yygh.vo.hosp.ScheduleOrderVo;
 import com.yygh.vo.hosp.ScheduleQueryVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
@@ -36,7 +39,7 @@ import java.util.stream.Collectors;
  * @date 2024-09-21 15:43
  */
 @Service
-public class ScheduleServiceImpl implements ScheduleService {
+public class ScheduleServiceImpl extends ServiceImpl<ScheduleMapper, Schedule> implements ScheduleService {
     @Autowired
     private ScheduleRepository scheduleRepository;
     @Autowired
@@ -239,6 +242,56 @@ public class ScheduleServiceImpl implements ScheduleService {
         Schedule schedule = scheduleRepository.findById(scheduleId).get();
         return packageSchedule(schedule);
     }
+
+    @Override
+    public ScheduleOrderVo getSheduleOrderVo(String scheduleId) {
+        ScheduleOrderVo scheduleOrderVo = new ScheduleOrderVo();
+        // 获取排班信息
+        Schedule schedule = baseMapper.selectById(scheduleId);
+        if (schedule == null) {
+            throw new YyghException(ResultCodeEnum.PARAM_ERROR);
+        }
+
+        // 获取预约规则信息
+        Hospital hospital = hospitalService.getByHoscode(schedule.getHoscode());
+        if (hospital == null) {
+            throw new YyghException(ResultCodeEnum.PARAM_ERROR);
+        }
+        BookingRule bookingRule = hospital.getBookingRule();
+        if (bookingRule == null) {
+            throw new YyghException(ResultCodeEnum.PARAM_ERROR);
+        }
+        scheduleOrderVo.setHoscode(hospital.getHoscode());
+        scheduleOrderVo.setHosname(hospitalService.getHosName(schedule.getHoscode()));
+        scheduleOrderVo.setDepcode(schedule.getDepcode());
+        scheduleOrderVo.setDepname(departService.getDepartName(schedule.getHoscode(), schedule.getDepcode()));
+        scheduleOrderVo.setHosScheduleId(schedule.getHosScheduleId());
+        scheduleOrderVo.setAvailableNumber(schedule.getAvailableNumber());
+        scheduleOrderVo.setTitle(schedule.getTitle());
+        scheduleOrderVo.setReserveDate(schedule.getWorkDate());
+        scheduleOrderVo.setReserveTime(schedule.getWorkTime());
+        scheduleOrderVo.setAmount(schedule.getAmount());
+
+        // 退号截止天数
+        int quintDay = bookingRule.getQuitDay();
+        DateTime quitTime = getDateTime(DateUtil.offsetDay(new DateTime(schedule.getWorkDate()), quintDay), bookingRule.getQuitTime());
+        scheduleOrderVo.setQuitTime(quitTime.toJdkDate());
+
+        //预约开始时间
+        DateTime startTime = getDateTime(new Date(), bookingRule.getReleaseTime());
+        scheduleOrderVo.setStartTime(startTime.toJdkDate());
+
+        // 预约结束时间
+        DateTime endTime = getDateTime(DateUtil.offsetDay(new DateTime(), bookingRule.getCycle()), bookingRule.getStopTime());
+        scheduleOrderVo.setEndTime(endTime.toJdkDate());
+
+        // 当天停止挂号时间
+        DateTime stopTime = getDateTime(new Date(), bookingRule.getStopTime());
+        scheduleOrderVo.setStopTime(stopTime.toJdkDate());
+
+        return scheduleOrderVo;
+    }
+
 
     /**
      * 获取可预约日期分页数据
