@@ -16,10 +16,19 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @EnableDiscoveryClient
 @ComponentScan(basePackages = {"com.yygh"})
-@MapperScan(basePackages = {"com.yygh"})
-@EnableFeignClients(basePackages = {"com.yygh"})
+@MapperScan(basePackages = {"com.yygh.order.mapper"})
+@EnableFeignClients(basePackages = {"com.yygh.hosp", "com.yygh.user"})
 public class ServiceOrderApplication {
     public static void main(String[] args) {
         SpringApplication.run(ServiceOrderApplication.class, args);
+        System.out.println("""
+                《═══════════════════════》 \s
+                  ★✔️ 系统已完美启动 ★ ✔️   \s
+                《═══════════════════════》
+                   ✨ ★( •_•)>⌐■-■    ✨ ★
+                 (⌐■_■) ✧炫酷登场  ✧٩(ˊᗜˋ*)و✧\s
+                ━━━━━━━━━━━✦✧✦━━━━━━━━━━━ \s
+                   (ﾉ>ω<)ﾉ ✩✩✩ BOOM! \s
+                """);
     }
 }

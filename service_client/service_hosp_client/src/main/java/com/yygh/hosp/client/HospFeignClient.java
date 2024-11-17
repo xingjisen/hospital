@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
  * @Description
  * @date 2024-11-12 22:00
  */
-@FeignClient(value = "service-hosp")
+@FeignClient(value = "service-hosp", path = "/api/hosp")
 @Repository
 public interface HospFeignClient {
     /**
@@ -22,7 +22,7 @@ public interface HospFeignClient {
      * @param scheduleId
      * @return
      */
-    @GetMapping("/api/hosp/inner/getSheduleOrderVo/{scheduleId}")
+    @GetMapping("/inner/getSheduleOrderVo/{scheduleId}")
     public ScheduleOrderVo getSheduleOrderVo(@PathVariable("scheduleId") String scheduleId);
 
 

@@ -13,7 +13,6 @@
         <module>service</module>
         <module>service_client</module>
         <module>service_gateway</module>
-        <module>service/service_user</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -28,7 +27,7 @@
         <revision>0.0.1</revision>
 
         <java.version>17</java.version>
-        <!--        <spring-cloud.version>2023.0.3</spring-cloud.version>-->
+        <!--        <spring-cloud.version>2023.0.0</spring-cloud.version>-->
         <spring-cloud.version>3.2.5</spring-cloud.version>
         <gateway.version>4.1.0</gateway.version>
         <openfeign.version>4.1.0</openfeign.version>
@@ -291,6 +290,19 @@
                 <artifactId>okhttp</artifactId>
                 <version>${okhttp3.version}</version>
             </dependency>
+
+            <!--rabbitmq-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-bus-amqp</artifactId>
+                <!--                <version>${spring-amqp.version}</version>-->
+                <version>2.0.0.RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-actuator</artifactId>
+                <version>3.2.2</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <dependencies>
@@ -311,49 +323,6 @@
         </dependency>
 
     </dependencies>
-    <!--<dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        &lt;!&ndash;https://mvnrepository.com/artifact/cn.hutool/hutool-all&ndash;&gt;
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
-            <version>5.8.25</version>
-        </dependency>
-
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.5.3.2</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.20</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.alibaba.fastjson2</groupId>
-            <artifactId>fastjson2</artifactId>
-            <version>${fastjson2.version}</version>
-        </dependency>
-    </dependencies>-->
 
     <!--
         <build>
@@ -387,5 +356,4 @@
                 </plugin>
             </plugins>
         </build>-->
-
 </project>

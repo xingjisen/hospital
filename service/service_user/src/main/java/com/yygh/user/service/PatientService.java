@@ -17,4 +17,6 @@ public interface PatientService extends IService<Patient> {
     int add(Patient patient);
 
     Patient getById(Long id);
+
+    List<Patient> AllList();
 }

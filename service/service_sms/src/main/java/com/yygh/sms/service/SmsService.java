@@ -1,5 +1,7 @@
 package com.yygh.sms.service;
 
+import com.yygh.vo.sms.SmsVo;
+
 import java.util.Map;
 
 /**
@@ -10,4 +12,10 @@ import java.util.Map;
  */
 public interface SmsService {
     Map<String, Object> send(String phone);
+
+
+    /**
+     * MQ发送短信接口
+     */
+    boolean send(SmsVo smsVo);
 }

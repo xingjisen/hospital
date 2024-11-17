@@ -25,6 +25,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class ServerGatewayApplication {
     public static void main(String[] args) {
         SpringApplication.run(ServerGatewayApplication.class, args);
+        System.out.println("""
+                《═══════════════════════》 \s
+                  ★✔️ 系统已完美启动 ★ ✔️   \s
+                《═══════════════════════》
+                   ✨ ★( •_•)>⌐■-■    ✨ ★
+                 (⌐■_■) ✧炫酷登场  ✧٩(ˊᗜˋ*)و✧\s
+                ━━━━━━━━━━━✦✧✦━━━━━━━━━━━ \s
+                   (ﾉ>ω<)ﾉ ✩✩✩ BOOM! \s
+                """);
     }
 
 

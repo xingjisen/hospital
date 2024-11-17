@@ -6,7 +6,7 @@
     <parent>
         <groupId>com</groupId>
         <artifactId>service_client</artifactId>
-        <version>0.0.1</version>
+        <version>${revision}</version>
     </parent>
 
     <artifactId>service_hosp_client</artifactId>

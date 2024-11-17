@@ -130,6 +130,4 @@ public class WeiXinApiController {
                 "&name=" + URLEncoder.encode((String) map.get("name"), StandardCharsets.UTF_8);
 //                "&phone=" + (isPhone ? userInfo.getPhone() : "")
     }
-
-    // 得到扫码人信息
 }

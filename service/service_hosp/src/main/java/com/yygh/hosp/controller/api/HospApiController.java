@@ -71,6 +71,6 @@ public class HospApiController {
     @Operation(summary = "根据排班ID获取排版数据")
     @GetMapping("/getSchedule/{scheduleId}")
     public Result getSchedule(@PathVariable("scheduleId") String scheduleId) {
-        return Result.success(scheduleService.getSheduleId(scheduleId));
+        return Result.success(scheduleService.getScheduleId(scheduleId));
     }
 }

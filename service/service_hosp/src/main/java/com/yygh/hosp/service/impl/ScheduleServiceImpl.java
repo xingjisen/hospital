@@ -238,7 +238,7 @@ public class ScheduleServiceImpl extends ServiceImpl<ScheduleMapper, Schedule> i
     }
 
     @Override
-    public Schedule getSheduleId(String scheduleId) {
+    public Schedule getScheduleId(String scheduleId) {
         Schedule schedule = scheduleRepository.findById(scheduleId).get();
         return packageSchedule(schedule);
     }
@@ -247,7 +247,7 @@ public class ScheduleServiceImpl extends ServiceImpl<ScheduleMapper, Schedule> i
     public ScheduleOrderVo getSheduleOrderVo(String scheduleId) {
         ScheduleOrderVo scheduleOrderVo = new ScheduleOrderVo();
         // 获取排班信息
-        Schedule schedule = baseMapper.selectById(scheduleId);
+        Schedule schedule = getScheduleId(scheduleId);
         if (schedule == null) {
             throw new YyghException(ResultCodeEnum.PARAM_ERROR);
         }
@@ -290,6 +290,13 @@ public class ScheduleServiceImpl extends ServiceImpl<ScheduleMapper, Schedule> i
         scheduleOrderVo.setStopTime(stopTime.toJdkDate());
 
         return scheduleOrderVo;
+    }
+
+
+    @Override
+    public void update(Schedule schedule) {
+        schedule.setUpdateTime(new Date());
+        scheduleRepository.save(schedule);
     }
 
 

@@ -154,6 +154,7 @@ import "~/assets/css/hospital.css";
 
 import { getSchedule } from "@/api/hosp";
 import { list } from "@/api/patient";
+import { saveOrder } from "@/api/order";
 
 export default {
 
@@ -205,7 +206,18 @@ export default {
     },
 
     submitOrder() {
-
+      if (this.submitBnt !== "正在提交...") {
+        this.submitBnt = "正在提交...";
+      } else {
+        this.$message.error("重复提交");
+        return;
+      }
+      saveOrder(this.scheduleId, this.patient.id).then(res => {
+        let orderId = res.data;
+        window.location.href = "/order/show?orderId=" + orderId;
+      }).catch(err => {
+        this.submitBnt = "确认挂号";
+      });
     },
 
     addPatient() {

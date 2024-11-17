@@ -1,9 +1,9 @@
-package com.yygh.hosp.client;
+package com.yygh.user.client;
 
-import com.yygh.model.user.Patient;
+import com.yygh.common.result.Result;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 /**
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
  * @Description
  * @date 2024-11-12 21:31
  */
-@FeignClient(value = "service-user")
+@FeignClient(value = "service-user", path = "/api/user/patient")
 @Repository
 public interface PatientFeignClient {
 
@@ -22,6 +22,6 @@ public interface PatientFeignClient {
      * @param id
      * @return
      */
-    @DeleteMapping("/api/user/patient/inner/get/{id}")
-    public Patient getParentId(@PathVariable Long id);
+    @GetMapping("/inner/get/{id}")
+    public Result getParentId(@PathVariable Long id);
 }

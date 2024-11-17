@@ -24,5 +24,14 @@ public class ServiceUserApplication {
     public static void main(String[] args) {
         SpringApplication.run(ServiceUserApplication.class, args);
         System.out.println("启动成功,Sa-Token 配置如下：" + SaManager.getConfig());
+        System.out.println("""
+                《═══════════════════════》 \s
+                  ★✔️ 系统已完美启动 ★ ✔️   \s
+                《═══════════════════════》
+                   ✨ ★( •_•)>⌐■-■    ✨ ★
+                 (⌐■_■) ✧炫酷登场  ✧٩(ˊᗜˋ*)و✧\s
+                ━━━━━━━━━━━✦✧✦━━━━━━━━━━━ \s
+                   (ﾉ>ω<)ﾉ ✩✩✩ BOOM! \s
+                """);
     }
 }

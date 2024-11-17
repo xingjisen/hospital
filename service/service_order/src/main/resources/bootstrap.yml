@@ -28,3 +28,9 @@ spring:
         namespace: 858556d4-ff55-44da-964e-fa7cd70fa16b
         # 分组
         group: yygh
+        # 共享配置
+        shared-configs:
+          - data-id: config-dev.yml
+            group: share
+            # 是否自动刷新
+            refresh: true

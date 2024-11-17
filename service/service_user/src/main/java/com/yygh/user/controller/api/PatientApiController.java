@@ -32,6 +32,13 @@ public class PatientApiController {
         return Result.success(patients);
     }
 
+    @Operation(summary = "获取全部就诊人列表")
+    @GetMapping("/auth/allList")
+    public Result AllList() {
+        List<Patient> patients = patientService.AllList();
+        return Result.success(patients);
+    }
+
     @Operation(summary = "添加就诊人")
     @PostMapping("/auth/add")
     public Result add(@RequestBody Patient patient) {
@@ -75,7 +82,7 @@ public class PatientApiController {
     }
 
     @Operation(summary = "根据就诊人id获取就诊人信息")
-    @DeleteMapping("/inner/get/{id}")
+    @GetMapping("/inner/get/{id}")
     public Result getParentId(@PathVariable Long id) {
         Patient patient = patientService.getById(id);
         return Result.success(patient);

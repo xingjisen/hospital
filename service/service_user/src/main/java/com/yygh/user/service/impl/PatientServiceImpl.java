@@ -31,7 +31,6 @@ public class PatientServiceImpl extends ServiceImpl<PatientMapper, Patient> impl
         patients.forEach(patient -> {
             packaPatient(patient);
         });
-
         return patients;
     }
 
@@ -44,6 +43,15 @@ public class PatientServiceImpl extends ServiceImpl<PatientMapper, Patient> impl
     @Override
     public Patient getById(Long id) {
         return packaPatient(baseMapper.selectById(id));
+    }
+
+    @Override
+    public List<Patient> AllList() {
+        List<Patient> patients = baseMapper.selectList(null);
+        patients.forEach(patient -> {
+            packaPatient(patient);
+        });
+        return patients;
     }
 
 

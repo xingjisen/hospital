@@ -4,19 +4,28 @@ import cn.hutool.core.convert.Convert;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
 import com.alibaba.fastjson2.JSONObject;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yygh.common.exception.YyghException;
+import com.yygh.common.rabbit.constant.MqConst;
+import com.yygh.common.rabbit.service.RabbitService;
+import com.yygh.common.result.Result;
 import com.yygh.common.result.ResultCodeEnum;
 import com.yygh.common.utils.helper.HttpRequestHelper;
 import com.yygh.enums.OrderStatusEnum;
 import com.yygh.hosp.client.HospFeignClient;
-import com.yygh.hosp.client.PatientFeignClient;
 import com.yygh.model.order.OrderInfo;
 import com.yygh.model.user.Patient;
 import com.yygh.order.mapper.OrderMapper;
 import com.yygh.order.service.OrderService;
+import com.yygh.user.client.PatientFeignClient;
 import com.yygh.vo.hosp.ScheduleOrderVo;
+import com.yygh.vo.order.OrderMqVo;
+import com.yygh.vo.order.OrderQueryVo;
 import com.yygh.vo.order.SignInfoVo;
+import com.yygh.vo.sms.SmsVo;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
@@ -31,22 +40,28 @@ import java.util.Map;
  * @date 2024-11-07 22:35
  */
 @Service
+@AllArgsConstructor
 public class OrderServiceImpl extends ServiceImpl<OrderMapper, OrderInfo> implements OrderService {
 
     private PatientFeignClient patientFeignClient;
     private HospFeignClient hospFeignClient;
+    private RabbitService rabbitService;
 
 
     @Override
     public Long saveOrder(String scheduleId, Long patientId) {
         // 就诊人信息
-        Patient patient = patientFeignClient.getParentId(patientId);
+        Result res = patientFeignClient.getParentId(patientId);
+        if (res.getCode() != 200) {
+            throw new YyghException(ResultCodeEnum.CUSTOM);
+        }
+        Patient patient = Convert.convert(Patient.class, res.getData());
         //排班信息
         ScheduleOrderVo sheduleOrderVo = hospFeignClient.getSheduleOrderVo(scheduleId);
         // 判断是否可以预约
         Date startTime = sheduleOrderVo.getStartTime();
         Date endTime = sheduleOrderVo.getEndTime();
-        if (!DateUtil.isIn(startTime, new Date(), endTime)) {
+        if (!DateUtil.isIn(new Date(), startTime, endTime)) {
             throw new YyghException(ResultCodeEnum.TIME_NO);
         }
 
@@ -120,10 +135,54 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, OrderInfo> implem
             //排班剩余预约数
             Integer availableNumber = jsonObject.getInteger("availableNumber");
             //发送mq信息更新号源和短信通知
+
+            OrderMqVo orderMqVo = new OrderMqVo();
+            orderMqVo.setScheduleId(scheduleId);
+            orderMqVo.setReservedNumber(reservedNumber);
+            orderMqVo.setAvailableNumber(availableNumber);
+
+            SmsVo smsVo = new SmsVo();
+            smsVo.setPhone(patient.getPhone());
+//            smsVo.getParam().put("code", number);
+//            smsVo.setTemplateCode("1818190");
+            smsVo.setTemplateCode("2309269");
+            String reserveDate = DateUtil.formatDate(orderInfo.getReserveDate()) + (orderInfo.getReserveTime() == 0 ? "上午" : "下午");
+
+            OrderInfo finalOrderInfo = orderInfo;
+            Map<String, Object> param = new HashMap<>() {{
+                put("title", finalOrderInfo.getHoscode() + "|" + finalOrderInfo.getDepname() + "|" + finalOrderInfo.getTitle());
+                put("amount", finalOrderInfo.getAmount());
+                put("reserveDate", reserveDate);
+                put("name", finalOrderInfo.getPatientName());
+                put("quitTime", DateUtil.formatDate(finalOrderInfo.getQuitTime()));
+            }};
+            smsVo.setParam(param);
+            orderMqVo.setSmsVo(smsVo);
+            rabbitService.sendMessage(MqConst.EXCHANGE_DIRECT_ORDER, MqConst.ROUTING_ORDER, orderMqVo);
         } else {
             throw new YyghException(result.getString("message"), ResultCodeEnum.FAIL.getCode());
         }
         return orderInfo.getId();
 
+    }
+
+    @Override
+    public OrderInfo getOrders(String orderId) {
+        OrderInfo orderInfo = baseMapper.selectById(orderId);
+        return packOrderInfo(orderInfo);
+    }
+
+    @Override
+    public IPage<OrderInfo> list(OrderQueryVo orderQueryVo) {
+        IPage<OrderInfo> iPage = new Page(orderQueryVo.getPageNum(), orderQueryVo.getPageSize());
+        IPage<OrderInfo> list = baseMapper.list(iPage, orderQueryVo);
+        list.getRecords().forEach(this::packOrderInfo);
+        return list;
+    }
+
+
+    private OrderInfo packOrderInfo(OrderInfo orderInfo) {
+        orderInfo.getParam().put("orderStatusString", OrderStatusEnum.getStatusNameByStatus(orderInfo.getOrderStatus()));
+        return orderInfo;
     }
 }

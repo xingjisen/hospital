@@ -317,7 +317,7 @@ export default {
     },
 
     show() {
-      window.location.href = "/hospital/" + this.hoscode;
+      window.location.href = "/hosp/" + this.hoscode;
     },
 
     booking(scheduleId, availableNumber) {

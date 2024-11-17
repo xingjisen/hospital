@@ -26,7 +26,7 @@ public class SaTokenConfigure {
                 .addInclude("/*/inner/**")
 //                .addInclude("/api/**/auth/**")
                 // 指定 [放行路由]
-                .addExclude("/api/hosp/**", "/admin/cmn/dict/**")
+                .addExclude("/api/hosp/**", "/admin/cmn/dict/**", "/admin/auth/**")
                 // 指定[认证函数]: 每次请求执行
                 .setAuth(obj -> {
                     System.out.println("---------- 进入Sa-Token全局认证 -----------" + obj);

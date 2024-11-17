@@ -28,8 +28,13 @@ public interface ScheduleService extends IService<Schedule> {
 
     Map<String, Object> bookingScheduleRule(ScheduleQueryVo scheduleQueryVo);
 
-    Schedule getSheduleId(String scheduleId);
+    Schedule getScheduleId(String scheduleId);
 
     ScheduleOrderVo getSheduleOrderVo(String scheduleId);
 
+
+    /**
+     * 更新排版数据
+     */
+    void update(Schedule schedule);
 }

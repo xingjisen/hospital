@@ -1,9 +1,12 @@
 package com.yygh.vo.order;
 
-import com.yygh.vo.msm.MsmVo;
+import com.yygh.vo.sms.SmsVo;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
+/**
+ * @author xingjisen
+ */
 @Data
 @Schema(description = "OrderMqVo")
 public class OrderMqVo {
@@ -18,7 +21,7 @@ public class OrderMqVo {
     private String scheduleId;
 
     @Schema(description = "短信实体")
-    private MsmVo msmVo;
+    private SmsVo smsVo;
 
 }
 

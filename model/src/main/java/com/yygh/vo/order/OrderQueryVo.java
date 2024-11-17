@@ -1,11 +1,12 @@
 package com.yygh.vo.order;
 
+import com.yygh.vo.common.Page;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 @Data
 @Schema(description = "Order")
-public class OrderQueryVo {
+public class OrderQueryVo extends Page {
 
 
     @Schema(description = "会员id")
