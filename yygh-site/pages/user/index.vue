@@ -25,7 +25,13 @@
       <div>
         <div class="title"> 实名认证</div>
         <div class="status-bar">
-          <div class="status-wrapper"><span class="iconfont"></span>{{ userInfo.param.authStatusString }}</div>
+          <div class="status-wrapper">
+            <span class="iconfont"></span>
+            <span v-if="userInfo.authStatus == 0">{{ userInfo.nickName }} 请进行实名认证</span>
+            <span v-if="userInfo.authStatus == 1">认证中,请耐心等待</span>
+            <span v-if="userInfo.authStatus == 2">{{ userInfo.nickName }} 已认证成功</span>
+            <span v-if="userInfo.authStatus == -1">认证失败,请联系管理员</span>
+          </div>
         </div>
         <div class="tips"><span class="iconfont"></span>
           完成实名认证后才能添加就诊人，正常进行挂号，为了不影响后续步骤，建议提前实名认证。
@@ -166,7 +172,7 @@ export default {
         this.fileUrl = response.data;
         console.log("上传图片成功");
         this.userAuah.certificatesUrl = this.fileUrl;
-        
+
         userAuth(this.userAuah).then(response => {
           this.$message.success("提交成功");
           window.location.reload();

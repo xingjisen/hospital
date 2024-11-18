@@ -107,7 +107,7 @@ export default {
     login: {
         welcome: '欢迎使用本系统',
         message: '开箱即用的中后台管理系统',
-        username: '用户名',
+        userName: '用户名',
         password: '密码',
         register: '注册',
         checkPassword: '确认密码',
@@ -201,6 +201,10 @@ export default {
 
         userManagement: {
             name: "用户管理"
+        },
+        orders: {
+            name: "订单管理",
+            registeredOrders: "挂号订单"
         }
     },
     permission: {
@@ -501,7 +505,7 @@ export default {
     descriptionsDemo: {
         descriptions: '描述',
         descriptionsDes: '基于 ElementPlus 的 Descriptions 组件二次封装',
-        username: '用户名',
+        userName: '用户名',
         nickName: '昵称',
         phone: '联系电话',
         email: '邮箱',
@@ -527,7 +531,7 @@ export default {
         message: '由于是模拟数据，所以只提供了两种不同权限的帐号，开发者可根据实际情况自行改造结合。',
         index: '序号',
         action: '操作',
-        username: '用户名',
+        userName: '用户名',
         password: '密码',
         role: '角色',
         remark: '备注',

@@ -81,6 +81,39 @@ export const constantRouterMap: AppRouteRecordRaw[] = [
 
 export const asyncRouterMap: AppRouteRecordRaw[] = [
     {
+        path: '/dashboard',
+        component: Layout,
+        redirect: '/dashboard/workplace',
+        name: 'Dashboard',
+        meta: {
+            title: t('router.dashboard'),
+            icon: 'vi-ant-design:dashboard-filled',
+            alwaysShow: true
+        },
+        children: [
+            {
+                path: 'analysis',
+                component: () => import('@/views/Dashboard/Analysis.vue'),
+                name: 'Analysis',
+                meta: {
+                    title: t('router.analysis'),
+                    noCache: true,
+                    hidden: true
+                }
+            },
+            {
+                path: 'workplace',
+                component: () => import('@/views/Dashboard/Workplace.vue'),
+                name: 'Workplace',
+                meta: {
+                    title: t('router.workplace'),
+                    noCache: true,
+                    affix: true
+                }
+            }
+        ]
+    },
+    {
         path: '/hosp',
         component: Layout,
         name: 'Hosp',
@@ -161,41 +194,35 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         ]
     },
     {
-        path: '/dashboard',
+        path: '/orders',
         component: Layout,
-        redirect: '/dashboard/analysis',
-        name: 'Dashboard',
+        name: 'orders',
         meta: {
-            title: t('router.dashboard'),
+            title: t('router.orders.name'),
             icon: 'vi-ant-design:dashboard-filled',
             alwaysShow: true
         },
         children: [
             {
-                path: 'analysis',
-                component: () => import('@/views/Dashboard/Analysis.vue'),
-                name: 'Analysis',
+                path: 'list',
+                component: () => import('@/views/yygh/order/index.vue'),
+                name: 'OrderManage',
                 meta: {
-                    title: t('router.analysis'),
+                    title: t('router.orders.registeredOrders'),
+                    icon: 'vi-ant-design:trademark-outlined',
                     noCache: true,
-                    affix: true
+                    affix: false
                 }
             },
-            {
-                path: 'workplace',
-                component: () => import('@/views/Dashboard/Workplace.vue'),
-                name: 'Workplace',
-                meta: {
-                    title: t('router.workplace'),
-                    noCache: true
-                }
-            }
         ]
     },
+    /*******************************************************************************************************/
     {
         path: '/external-link',
         component: Layout,
-        meta: {},
+        meta: {
+            hidden: true
+        },
         name: 'ExternalLink',
         children: [
             {
@@ -497,7 +524,8 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         meta: {
             title: t('router.function'),
             icon: 'vi-ri:function-fill',
-            alwaysShow: true
+            alwaysShow: true,
+            hidden: true
         },
         children: [
             {
@@ -606,7 +634,8 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         name: 'Level',
         meta: {
             title: t('router.level'),
-            icon: 'vi-carbon:skill-level-advanced'
+            icon: 'vi-carbon:skill-level-advanced',
+            hidden: true
         },
         children: [
             {
@@ -666,7 +695,8 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         meta: {
             title: t('router.example'),
             icon: 'vi-ep:management',
-            alwaysShow: true
+            alwaysShow: true,
+            hidden: true
         },
         children: [
             {
@@ -771,7 +801,8 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         meta: {
             title: t('router.authorization'),
             icon: 'vi-eos-icons:role-binding',
-            alwaysShow: true
+            alwaysShow: true,
+            hidden: true
         },
         children: [
             {

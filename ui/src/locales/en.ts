@@ -109,7 +109,7 @@ export default {
     login: {
         welcome: 'Welcome to the system',
         message: 'Backstage management system',
-        username: 'Username',
+        userName: 'userName',
         password: 'Password',
         register: 'Register',
         checkPassword: 'Confirm password',
@@ -118,7 +118,7 @@ export default {
         remember: 'Remember me',
         hasUser: 'Existing account? Go to login',
         forgetPassword: 'Forget password',
-        usernamePlaceholder: 'Please input username',
+        usernamePlaceholder: 'Please input userName',
         passwordPlaceholder: 'Please input password',
         code: 'Verification code',
         codePlaceholder: 'Please input verification code',
@@ -205,6 +205,10 @@ export default {
 
         userManagement: {
             name: "user management"
+        },
+        orders: {
+            name: "order management",
+            registeredOrders: "registered orders"
         }
     },
     permission: {
@@ -510,7 +514,7 @@ export default {
     descriptionsDemo: {
         descriptions: 'Descriptions',
         descriptionsDes: 'Secondary packaging of Descriptions components based on ElementPlus',
-        username: 'Username',
+        userName: 'userName',
         nickName: 'NickName',
         phone: 'Phone',
         email: 'Email',
@@ -537,7 +541,7 @@ export default {
             'Because it is simulated data, only two accounts with different permissions are provided, which can be modified and combined by developers according to the actual situation.',
         index: 'Index',
         action: 'Action',
-        username: 'Username',
+        userName: 'userName',
         password: 'Password',
         role: 'Role',
         remark: 'Remark',

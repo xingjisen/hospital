@@ -42,7 +42,7 @@
         </el-table-column>
         <el-table-column fixed="right" label="操作">
             <template #default="scope">
-                <el-button link type="primary" size="small" :icon="Edit" @click="handleView(scope.row)">详情</el-button>
+                <el-button link type="primary" size="small" :icon="View" @click="handleView(scope.row)">详情</el-button>
                 <el-button link type="primary" size="small" v-if="scope.row.authStatus === 1" :icon="Bell"
                            @click="handleApproval(scope.row)">审批
                 </el-button>
@@ -63,6 +63,7 @@
             v-model="dialogVisible"
             :title="title"
             @close="dialogClose"
+            custom-class="el-dialog"
             :fullscreen="true">
         <el-row>
             <el-col :span="24">
@@ -163,8 +164,8 @@
 </template>
 <script setup lang="ts">
 import {onMounted, ref} from 'vue'
-import {Bell, Edit} from "@element-plus/icons-vue";
-import {Action, ElMessage, ElMessageBox} from "element-plus";
+import {Bell, View} from "@element-plus/icons-vue";
+import {Action, ElLoading, ElMessage, ElMessageBox} from "element-plus";
 import {approval, detail, getUserList, lockUser} from "@/api/yygh/user";
 
 defineOptions({
@@ -238,12 +239,18 @@ const userInfo = ref({})
 const patientList = ref([])
 
 function handleView(row) {
+    dialogVisible.value = true
+    const loading = ElLoading.service({
+        target: '.el-dialog',
+        fullscreen: true,
+        background: 'rgba(0, 0, 0, 0.7)'
+    })
     title.value = "用户信息"
     detail(row.id).then(resp => {
         userInfo.value = resp.data.userInfo
         patientList.value = resp.data.patientList
+        loading.close()
     })
-    dialogVisible.value = true
 }
 
 function handleApproval(row) {
